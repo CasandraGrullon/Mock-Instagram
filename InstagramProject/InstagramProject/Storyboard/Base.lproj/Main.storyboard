@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="InstagramProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ff0e20de4718fe14cdd256c81c5db771" translatesAutoresizingMaskIntoConstraints="NO" id="IRo-PY-oYh">
+                                <rect key="frame" x="0.0" y="84" width="414" height="179.00000000000091"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instagram" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHI-YH-BH8">
+                                <rect key="frame" x="10" y="273" width="394" height="94"/>
+                                <fontDescription key="fontDescription" name="SavoyeLetPlain" family="Savoye LET" pointSize="79"/>
+                                <color key="textColor" red="0.74391895529999996" green="0.18815886970000001" blue="0.49413532020000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QdJ-p3-gal">
+                                <rect key="frame" x="20" y="417.5" width="374" height="34"/>
+                                <fontDescription key="fontDescription" name="EuphemiaUCAS" family="Euphemia UCAS" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xho-Da-DHe">
+                                <rect key="frame" x="20" y="502" width="374" height="34"/>
+                                <fontDescription key="fontDescription" name="EuphemiaUCAS" family="Euphemia UCAS" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aXx-pv-ROZ" customClass="DesignableButton" customModule="InstagramProject" customModuleProvider="target">
+                                <rect key="frame" x="183.5" y="586" width="47" height="35"/>
+                                <color key="backgroundColor" red="0.88636819387868016" green="0.33302431661093562" blue="0.72576950916510463" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" name="EuphemiaUCAS-Bold" family="Euphemia UCAS" pointSize="17"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Login"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3AK-xl-2mI"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIJ-h6-vOq">
+                                <rect key="frame" x="20" y="387" width="374" height="22.5"/>
+                                <fontDescription key="fontDescription" name="EuphemiaUCAS" family="Euphemia UCAS" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c2D-7X-gq8">
+                                <rect key="frame" x="20" y="471.5" width="374" height="22.5"/>
+                                <fontDescription key="fontDescription" name="EuphemiaUCAS" family="Euphemia UCAS" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ua8-Yd-l12">
+                                <rect key="frame" x="30" y="641" width="194" height="22.5"/>
+                                <fontDescription key="fontDescription" name="EuphemiaUCAS" family="Euphemia UCAS" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="riw-AE-OKw">
+                                <rect key="frame" x="233" y="635" width="119" height="35"/>
+                                <fontDescription key="fontDescription" name="EuphemiaUCAS-Bold" family="Euphemia UCAS" pointSize="17"/>
+                                <state key="normal" title="Sign Up Here">
+                                    <color key="titleColor" red="0.88636819389999999" green="0.33302431659999998" blue="0.72576950920000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="signUpButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EYE-3Q-aXU"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="riw-AE-OKw" secondAttribute="trailing" constant="62" id="2L5-SN-8rG"/>
+                            <constraint firstItem="c2D-7X-gq8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="2dd-sf-7PO"/>
+                            <constraint firstItem="aXx-pv-ROZ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6eN-5o-WbM"/>
+                            <constraint firstItem="QdJ-p3-gal" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="7Yk-6s-wHx"/>
+                            <constraint firstItem="riw-AE-OKw" firstAttribute="centerY" secondItem="ua8-Yd-l12" secondAttribute="centerY" id="7xA-jX-9uI"/>
+                            <constraint firstItem="aXx-pv-ROZ" firstAttribute="top" secondItem="xho-Da-DHe" secondAttribute="bottom" constant="50" id="EGA-1W-B4e"/>
+                            <constraint firstItem="ua8-Yd-l12" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="Jn3-7i-VUw"/>
+                            <constraint firstItem="xho-Da-DHe" firstAttribute="top" secondItem="c2D-7X-gq8" secondAttribute="bottom" constant="8" id="Jod-5s-nPI"/>
+                            <constraint firstItem="ua8-Yd-l12" firstAttribute="top" secondItem="aXx-pv-ROZ" secondAttribute="bottom" constant="20" id="OXO-EM-yff"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="c2D-7X-gq8" secondAttribute="trailing" constant="20" id="OXj-1R-o5p"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="aHI-YH-BH8" secondAttribute="trailing" constant="10" id="RCD-oi-bnt"/>
+                            <constraint firstItem="wIJ-h6-vOq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="RQg-y2-ng7"/>
+                            <constraint firstItem="QdJ-p3-gal" firstAttribute="top" secondItem="wIJ-h6-vOq" secondAttribute="bottom" constant="8" id="TSI-7J-bCj"/>
+                            <constraint firstItem="aHI-YH-BH8" firstAttribute="top" secondItem="IRo-PY-oYh" secondAttribute="bottom" constant="10" id="V8s-n0-eZa"/>
+                            <constraint firstItem="IRo-PY-oYh" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.2" id="VKK-Oj-0nE"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="QdJ-p3-gal" secondAttribute="trailing" constant="20" id="Yw3-Cf-YIn"/>
+                            <constraint firstItem="IRo-PY-oYh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="dsq-0c-Y4l"/>
+                            <constraint firstItem="xho-Da-DHe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="eoR-uL-P6Y"/>
+                            <constraint firstItem="IRo-PY-oYh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="gkT-2w-BGZ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xho-Da-DHe" secondAttribute="trailing" constant="20" id="ho0-f2-gLk"/>
+                            <constraint firstItem="aHI-YH-BH8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="lLg-fE-q2e"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wIJ-h6-vOq" secondAttribute="trailing" constant="20" id="r7L-dB-TLY"/>
+                            <constraint firstItem="riw-AE-OKw" firstAttribute="leading" secondItem="ua8-Yd-l12" secondAttribute="trailing" constant="9" id="rFj-gR-PNR"/>
+                            <constraint firstItem="wIJ-h6-vOq" firstAttribute="top" secondItem="aHI-YH-BH8" secondAttribute="bottom" constant="20" id="rP1-c4-7Vm"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="IRo-PY-oYh" secondAttribute="trailing" id="sQH-JM-xbS"/>
+                            <constraint firstItem="c2D-7X-gq8" firstAttribute="top" secondItem="QdJ-p3-gal" secondAttribute="bottom" constant="20" id="yrH-8i-mpC"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="QdJ-p3-gal" id="RQV-Kd-X8l"/>
+                        <outlet property="label" destination="ua8-Yd-l12" id="svx-aA-ebE"/>
+                        <outlet property="loginButton" destination="aXx-pv-ROZ" id="lgn-Ia-fkT"/>
+                        <outlet property="passwordTextField" destination="xho-Da-DHe" id="Fru-bD-lJW"/>
+                        <outlet property="signUpHere" destination="riw-AE-OKw" id="8o3-8X-Wmu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="139" y="95"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ff0e20de4718fe14cdd256c81c5db771" width="3091" height="3085"/>
+    </resources>
+</document>
