@@ -10,8 +10,15 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
+    private let profileView = ProfileView()
+    
+    override func loadView() {
+        view = profileView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        profileView.backgroundColor = .white
 
     }
 
