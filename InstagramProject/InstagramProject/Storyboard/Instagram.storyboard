@@ -240,10 +240,10 @@
             </objects>
             <point key="canvasLocation" x="-403" y="517"/>
         </scene>
-        <!--View Controller-->
+        <!--Edit Profile View Controller-->
         <scene sceneID="NcY-Oi-gzg">
             <objects>
-                <viewController id="QRR-nt-aTI" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditProfileViewController" id="QRR-nt-aTI" customClass="EditProfileViewController" customModule="InstagramProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0E4-wy-EEg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -266,37 +266,29 @@
                                 <state key="normal" title="Change Profile Photo">
                                     <color key="titleColor" red="0.88636819389999999" green="0.33302431659999998" blue="0.72576950920000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
+                                <connections>
+                                    <action selector="changeProfilePictureButton:" destination="QRR-nt-aTI" eventType="touchUpInside" id="tjR-DP-9T6"/>
+                                </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UgB-DX-Wld">
-                                <rect key="frame" x="10" y="263" width="394" height="22.5"/>
-                                <fontDescription key="fontDescription" name="EuphemiaUCAS" family="Euphemia UCAS" pointSize="17"/>
-                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iPp-Nh-DVA">
-                                <rect key="frame" x="10" y="293.5" width="394" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vhj-XC-3jH">
-                                <rect key="frame" x="10" y="337.5" width="394" height="22.5"/>
+                                <rect key="frame" x="10" y="253" width="394" height="22.5"/>
                                 <fontDescription key="fontDescription" name="EuphemiaUCAS" family="Euphemia UCAS" pointSize="17"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t6C-uX-i0B">
-                                <rect key="frame" x="10" y="368" width="394" height="34"/>
+                                <rect key="frame" x="10" y="283.5" width="394" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EQh-Sd-hH3">
-                                <rect key="frame" x="10" y="412" width="394" height="22.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EQh-Sd-hH3">
+                                <rect key="frame" x="10" y="327.5" width="394" height="23"/>
                                 <fontDescription key="fontDescription" name="EuphemiaUCAS" family="Euphemia UCAS" pointSize="17"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XSV-2J-sGN">
-                                <rect key="frame" x="10" y="442.5" width="394" height="34"/>
+                                <rect key="frame" x="10" y="358.5" width="394" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -310,32 +302,38 @@
                             <constraint firstItem="t6C-uX-i0B" firstAttribute="top" secondItem="vhj-XC-3jH" secondAttribute="bottom" constant="8" id="BJt-mL-265"/>
                             <constraint firstItem="CY6-VI-Kic" firstAttribute="trailing" secondItem="XSV-2J-sGN" secondAttribute="trailing" constant="10" id="Ca3-S6-Mu2"/>
                             <constraint firstItem="XSV-2J-sGN" firstAttribute="leading" secondItem="CY6-VI-Kic" secondAttribute="leading" constant="10" id="CtW-y5-1QV"/>
-                            <constraint firstItem="CY6-VI-Kic" firstAttribute="trailing" secondItem="iPp-Nh-DVA" secondAttribute="trailing" constant="10" id="D6S-L7-bko"/>
-                            <constraint firstItem="CY6-VI-Kic" firstAttribute="trailing" secondItem="UgB-DX-Wld" secondAttribute="trailing" constant="10" id="EuJ-zR-g6d"/>
                             <constraint firstItem="CY6-VI-Kic" firstAttribute="trailing" secondItem="t6C-uX-i0B" secondAttribute="trailing" constant="10" id="HA7-AQ-jdo"/>
                             <constraint firstItem="XSV-2J-sGN" firstAttribute="top" secondItem="EQh-Sd-hH3" secondAttribute="bottom" constant="8" id="J2n-l9-Q9d"/>
                             <constraint firstItem="CY6-VI-Kic" firstAttribute="trailing" secondItem="vhj-XC-3jH" secondAttribute="trailing" constant="10" id="Qfo-yR-92D"/>
                             <constraint firstItem="dSJ-bU-Ihn" firstAttribute="centerX" secondItem="xkN-zJ-A0B" secondAttribute="centerX" id="QwF-2r-tHs"/>
-                            <constraint firstItem="iPp-Nh-DVA" firstAttribute="top" secondItem="UgB-DX-Wld" secondAttribute="bottom" constant="8" id="bcE-Xb-TVs"/>
-                            <constraint firstItem="UgB-DX-Wld" firstAttribute="top" secondItem="dSJ-bU-Ihn" secondAttribute="bottom" constant="20" id="gMk-gF-yP7"/>
+                            <constraint firstItem="vhj-XC-3jH" firstAttribute="top" secondItem="dSJ-bU-Ihn" secondAttribute="bottom" constant="10" id="d3Z-kF-inf"/>
                             <constraint firstItem="t6C-uX-i0B" firstAttribute="leading" secondItem="CY6-VI-Kic" secondAttribute="leading" constant="10" id="gn4-OF-mva"/>
                             <constraint firstItem="CY6-VI-Kic" firstAttribute="trailing" secondItem="EQh-Sd-hH3" secondAttribute="trailing" constant="10" id="hSs-wQ-HFR"/>
                             <constraint firstItem="vhj-XC-3jH" firstAttribute="leading" secondItem="CY6-VI-Kic" secondAttribute="leading" constant="10" id="iH4-2k-8DI"/>
-                            <constraint firstItem="iPp-Nh-DVA" firstAttribute="leading" secondItem="CY6-VI-Kic" secondAttribute="leading" constant="10" id="tSz-XN-iJ1"/>
-                            <constraint firstItem="UgB-DX-Wld" firstAttribute="leading" secondItem="CY6-VI-Kic" secondAttribute="leading" constant="10" id="tlx-Uk-u7A"/>
                             <constraint firstItem="dSJ-bU-Ihn" firstAttribute="top" secondItem="xkN-zJ-A0B" secondAttribute="bottom" constant="10" id="vqK-5r-1Q2"/>
-                            <constraint firstItem="vhj-XC-3jH" firstAttribute="top" secondItem="iPp-Nh-DVA" secondAttribute="bottom" constant="10" id="xAX-8H-zgA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="CY6-VI-Kic"/>
                     </view>
                     <navigationItem key="navigationItem" id="wUL-hy-idO">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="xmark" catalog="system" id="3pl-OE-ARB">
                             <color key="tintColor" red="0.88636819389999999" green="0.33302431659999998" blue="0.72576950920000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <connections>
+                                <action selector="cancelButtonPressed:" destination="QRR-nt-aTI" id="GZ6-9g-33C"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="checkmark" catalog="system" id="y97-8y-CCP">
                             <color key="tintColor" red="0.88636819389999999" green="0.33302431659999998" blue="0.72576950920000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <connections>
+                                <action selector="doneButtonPressed:" destination="QRR-nt-aTI" id="mh7-6j-Fwr"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="doneButton" destination="y97-8y-CCP" id="ACL-t2-RL3"/>
+                        <outlet property="emailTextfield" destination="XSV-2J-sGN" id="RQa-a7-UWX"/>
+                        <outlet property="profilePictureView" destination="xkN-zJ-A0B" id="JkU-2W-21v"/>
+                        <outlet property="usernameTextfield" destination="t6C-uX-i0B" id="Ucv-oo-Rva"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GOw-UJ-khF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

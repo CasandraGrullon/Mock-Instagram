@@ -28,6 +28,9 @@
 		C69C28DA240EEE1E00CA4D73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C69C28D9240EEE1E00CA4D73 /* Assets.xcassets */; };
 		C69C28DD240EEE1E00CA4D73 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C69C28DB240EEE1E00CA4D73 /* LaunchScreen.storyboard */; };
 		C69C28E5240EEEBD00CA4D73 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C69C28E4240EEEBD00CA4D73 /* GoogleService-Info.plist */; };
+		C6B5D6BC241183CD004D768E /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B5D6BB241183CD004D768E /* EditProfileViewController.swift */; };
+		C6B5D6BE24118A41004D768E /* ResizeImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B5D6BD24118A41004D768E /* ResizeImage.swift */; };
+		C6B5D6C024118B9C004D768E /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B5D6BF24118B9C004D768E /* StorageService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +58,9 @@
 		C69C28DC240EEE1E00CA4D73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C69C28DE240EEE1E00CA4D73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C69C28E4240EEEBD00CA4D73 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C6B5D6BB241183CD004D768E /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		C6B5D6BD24118A41004D768E /* ResizeImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizeImage.swift; sourceTree = "<group>"; };
+		C6B5D6BF24118B9C004D768E /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		F48E36CB0392BB3903EE884F /* Pods_InstagramProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstagramProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -92,6 +98,7 @@
 				C6479E6F240EF573007CFE84 /* Designable.swift */,
 				C6479E71240EF655007CFE84 /* Gradient.swift */,
 				C6479E80240F055E007CFE84 /* ShowAlert.swift */,
+				C6B5D6BD24118A41004D768E /* ResizeImage.swift */,
 			);
 			path = ViewExtras;
 			sourceTree = "<group>";
@@ -100,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				C6479E7E240F022B007CFE84 /* AuthenticationSession.swift */,
+				C6B5D6BF24118B9C004D768E /* StorageService.swift */,
 			);
 			path = FirebaseServices;
 			sourceTree = "<group>";
@@ -174,6 +182,7 @@
 				C69C28D4240EEE1B00CA4D73 /* LoginViewController.swift */,
 				C6479E7B240EF94B007CFE84 /* TabBarController.swift */,
 				C6479E73240EF80D007CFE84 /* ProfileViewController.swift */,
+				C6B5D6BB241183CD004D768E /* EditProfileViewController.swift */,
 				C6479E77240EF855007CFE84 /* InstagramFeedViewController.swift */,
 				C6479E79240EF872007CFE84 /* AddPhotoViewController.swift */,
 			);
@@ -306,17 +315,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6B5D6BC241183CD004D768E /* EditProfileViewController.swift in Sources */,
 				C6479E74240EF80D007CFE84 /* ProfileViewController.swift in Sources */,
 				C6479E8A240F10D3007CFE84 /* ProfileView.swift in Sources */,
 				C6479E72240EF655007CFE84 /* Gradient.swift in Sources */,
 				C69C28D5240EEE1B00CA4D73 /* LoginViewController.swift in Sources */,
 				C6479E7C240EF94B007CFE84 /* TabBarController.swift in Sources */,
 				C6479E70240EF573007CFE84 /* Designable.swift in Sources */,
+				C6B5D6C024118B9C004D768E /* StorageService.swift in Sources */,
 				C61918E02411481800D351C7 /* InstagramFeedCell.swift in Sources */,
 				C69C28D1240EEE1B00CA4D73 /* AppDelegate.swift in Sources */,
 				C69C28D3240EEE1B00CA4D73 /* SceneDelegate.swift in Sources */,
 				C6479E7A240EF872007CFE84 /* AddPhotoViewController.swift in Sources */,
 				C6479E7F240F022B007CFE84 /* AuthenticationSession.swift in Sources */,
+				C6B5D6BE24118A41004D768E /* ResizeImage.swift in Sources */,
 				C6479E81240F055E007CFE84 /* ShowAlert.swift in Sources */,
 				C6479E78240EF855007CFE84 /* InstagramFeedViewController.swift in Sources */,
 				C61918E2241149B800D351C7 /* InstagramPost.swift in Sources */,

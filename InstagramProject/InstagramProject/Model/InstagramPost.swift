@@ -9,6 +9,7 @@
 import Foundation
 
 struct InstagramPost {
+    let postId: String
     let userName: String
     let caption: String
     let photo: String

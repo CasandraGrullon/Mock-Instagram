@@ -20,10 +20,15 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         profileView.backgroundColor = .white
+        configureNavBar()
 
     }
     
     private func configureNavBar() {
+        guard let user = Auth.auth().currentUser else {
+            return
+        }
+        navigationItem.title = user.displayName
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3"), style: .plain, target: self, action: #selector(editButtonPressed(_:)))
     }
 
