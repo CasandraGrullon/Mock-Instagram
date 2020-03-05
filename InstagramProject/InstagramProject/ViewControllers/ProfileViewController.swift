@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ProfileViewController: UIViewController {
 
@@ -21,6 +22,13 @@ class ProfileViewController: UIViewController {
         profileView.backgroundColor = .white
 
     }
+    
+    private func configureNavBar() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3"), style: .plain, target: self, action: #selector(editButtonPressed(_:)))
+    }
 
+    @objc private func editButtonPressed(_ sender: UIBarButtonItem) {
+        print("send to edit profile vc")
+    }
 
 }

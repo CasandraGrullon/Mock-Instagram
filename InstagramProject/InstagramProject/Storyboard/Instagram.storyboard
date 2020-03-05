@@ -42,9 +42,13 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iEC-i7-zd4">
                                 <rect key="frame" x="0.0" y="764" width="414" height="49"/>
                                 <items>
-                                    <barButtonItem title="GALLERY" id="jnX-K9-bE1"/>
+                                    <barButtonItem title="GALLERY" id="jnX-K9-bE1">
+                                        <color key="tintColor" red="0.88636819389999999" green="0.33302431659999998" blue="0.72576950920000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </barButtonItem>
                                     <barButtonItem width="238" style="plain" systemItem="fixedSpace" id="CV2-0A-hxt"/>
-                                    <barButtonItem title="CAMERA" id="JH1-dw-3sl"/>
+                                    <barButtonItem title="CAMERA" id="JH1-dw-3sl">
+                                        <color key="tintColor" red="0.88636819389999999" green="0.33302431659999998" blue="0.72576950920000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tjO-Hc-ebN" customClass="DesignableButton" customModule="InstagramProject" customModuleProvider="target">
@@ -82,8 +86,12 @@
                         <viewLayoutGuide key="safeArea" id="adp-2M-9jh"/>
                     </view>
                     <navigationItem key="navigationItem" id="ev7-ei-sXB">
-                        <barButtonItem key="leftBarButtonItem" image="xmark" catalog="system" id="G8F-6z-vp7"/>
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="Had-nR-Whu"/>
+                        <barButtonItem key="leftBarButtonItem" image="xmark" catalog="system" id="G8F-6z-vp7">
+                            <color key="tintColor" red="0.88636819389999999" green="0.33302431659999998" blue="0.72576950920000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="Had-nR-Whu">
+                            <color key="tintColor" red="0.88636819389999999" green="0.33302431659999998" blue="0.72576950920000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eai-9k-Mkj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -135,7 +143,9 @@
                                                         <constraint firstAttribute="width" constant="44" id="oAk-FO-Pu9"/>
                                                     </constraints>
                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <state key="normal" title="Button" image="ellipsis-vertical-512"/>
+                                                    <state key="normal" title="Button" image="ellipsis-vertical-512">
+                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                                                    </state>
                                                 </button>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oKW-eZ-HJI">
                                                     <rect key="frame" x="0.0" y="58" width="414" height="226"/>
@@ -230,8 +240,128 @@
             </objects>
             <point key="canvasLocation" x="-403" y="517"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="NcY-Oi-gzg">
+            <objects>
+                <viewController id="QRR-nt-aTI" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0E4-wy-EEg">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xkN-zJ-A0B" customClass="DesignableImageView" customModule="InstagramProject" customModuleProvider="target">
+                                <rect key="frame" x="157" y="98" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="KrF-bS-h5b"/>
+                                    <constraint firstAttribute="width" constant="100" id="oFM-4J-AIT"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dSJ-bU-Ihn">
+                                <rect key="frame" x="121.5" y="208" width="171" height="35"/>
+                                <fontDescription key="fontDescription" name="EuphemiaUCAS" family="Euphemia UCAS" pointSize="17"/>
+                                <state key="normal" title="Change Profile Photo">
+                                    <color key="titleColor" red="0.88636819389999999" green="0.33302431659999998" blue="0.72576950920000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UgB-DX-Wld">
+                                <rect key="frame" x="10" y="263" width="394" height="22.5"/>
+                                <fontDescription key="fontDescription" name="EuphemiaUCAS" family="Euphemia UCAS" pointSize="17"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iPp-Nh-DVA">
+                                <rect key="frame" x="10" y="293.5" width="394" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vhj-XC-3jH">
+                                <rect key="frame" x="10" y="337.5" width="394" height="22.5"/>
+                                <fontDescription key="fontDescription" name="EuphemiaUCAS" family="Euphemia UCAS" pointSize="17"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t6C-uX-i0B">
+                                <rect key="frame" x="10" y="368" width="394" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EQh-Sd-hH3">
+                                <rect key="frame" x="10" y="412" width="394" height="22.5"/>
+                                <fontDescription key="fontDescription" name="EuphemiaUCAS" family="Euphemia UCAS" pointSize="17"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XSV-2J-sGN">
+                                <rect key="frame" x="10" y="442.5" width="394" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="EQh-Sd-hH3" firstAttribute="top" secondItem="t6C-uX-i0B" secondAttribute="bottom" constant="10" id="707-1p-Ac0"/>
+                            <constraint firstItem="xkN-zJ-A0B" firstAttribute="top" secondItem="CY6-VI-Kic" secondAttribute="top" constant="10" id="8su-6x-oTa"/>
+                            <constraint firstItem="EQh-Sd-hH3" firstAttribute="leading" secondItem="CY6-VI-Kic" secondAttribute="leading" constant="10" id="97A-EW-Vp0"/>
+                            <constraint firstItem="xkN-zJ-A0B" firstAttribute="centerX" secondItem="CY6-VI-Kic" secondAttribute="centerX" id="B1t-Gb-8LR"/>
+                            <constraint firstItem="t6C-uX-i0B" firstAttribute="top" secondItem="vhj-XC-3jH" secondAttribute="bottom" constant="8" id="BJt-mL-265"/>
+                            <constraint firstItem="CY6-VI-Kic" firstAttribute="trailing" secondItem="XSV-2J-sGN" secondAttribute="trailing" constant="10" id="Ca3-S6-Mu2"/>
+                            <constraint firstItem="XSV-2J-sGN" firstAttribute="leading" secondItem="CY6-VI-Kic" secondAttribute="leading" constant="10" id="CtW-y5-1QV"/>
+                            <constraint firstItem="CY6-VI-Kic" firstAttribute="trailing" secondItem="iPp-Nh-DVA" secondAttribute="trailing" constant="10" id="D6S-L7-bko"/>
+                            <constraint firstItem="CY6-VI-Kic" firstAttribute="trailing" secondItem="UgB-DX-Wld" secondAttribute="trailing" constant="10" id="EuJ-zR-g6d"/>
+                            <constraint firstItem="CY6-VI-Kic" firstAttribute="trailing" secondItem="t6C-uX-i0B" secondAttribute="trailing" constant="10" id="HA7-AQ-jdo"/>
+                            <constraint firstItem="XSV-2J-sGN" firstAttribute="top" secondItem="EQh-Sd-hH3" secondAttribute="bottom" constant="8" id="J2n-l9-Q9d"/>
+                            <constraint firstItem="CY6-VI-Kic" firstAttribute="trailing" secondItem="vhj-XC-3jH" secondAttribute="trailing" constant="10" id="Qfo-yR-92D"/>
+                            <constraint firstItem="dSJ-bU-Ihn" firstAttribute="centerX" secondItem="xkN-zJ-A0B" secondAttribute="centerX" id="QwF-2r-tHs"/>
+                            <constraint firstItem="iPp-Nh-DVA" firstAttribute="top" secondItem="UgB-DX-Wld" secondAttribute="bottom" constant="8" id="bcE-Xb-TVs"/>
+                            <constraint firstItem="UgB-DX-Wld" firstAttribute="top" secondItem="dSJ-bU-Ihn" secondAttribute="bottom" constant="20" id="gMk-gF-yP7"/>
+                            <constraint firstItem="t6C-uX-i0B" firstAttribute="leading" secondItem="CY6-VI-Kic" secondAttribute="leading" constant="10" id="gn4-OF-mva"/>
+                            <constraint firstItem="CY6-VI-Kic" firstAttribute="trailing" secondItem="EQh-Sd-hH3" secondAttribute="trailing" constant="10" id="hSs-wQ-HFR"/>
+                            <constraint firstItem="vhj-XC-3jH" firstAttribute="leading" secondItem="CY6-VI-Kic" secondAttribute="leading" constant="10" id="iH4-2k-8DI"/>
+                            <constraint firstItem="iPp-Nh-DVA" firstAttribute="leading" secondItem="CY6-VI-Kic" secondAttribute="leading" constant="10" id="tSz-XN-iJ1"/>
+                            <constraint firstItem="UgB-DX-Wld" firstAttribute="leading" secondItem="CY6-VI-Kic" secondAttribute="leading" constant="10" id="tlx-Uk-u7A"/>
+                            <constraint firstItem="dSJ-bU-Ihn" firstAttribute="top" secondItem="xkN-zJ-A0B" secondAttribute="bottom" constant="10" id="vqK-5r-1Q2"/>
+                            <constraint firstItem="vhj-XC-3jH" firstAttribute="top" secondItem="iPp-Nh-DVA" secondAttribute="bottom" constant="10" id="xAX-8H-zgA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="CY6-VI-Kic"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="wUL-hy-idO">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="xmark" catalog="system" id="3pl-OE-ARB">
+                            <color key="tintColor" red="0.88636819389999999" green="0.33302431659999998" blue="0.72576950920000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="checkmark" catalog="system" id="y97-8y-CCP">
+                            <color key="tintColor" red="0.88636819389999999" green="0.33302431659999998" blue="0.72576950920000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GOw-UJ-khF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1000.0000000000001" y="520.98214285714289"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="PaV-cO-zcE">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3Xa-t2-icM" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dLI-dO-3ui">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="QRR-nt-aTI" kind="relationship" relationship="rootViewController" id="Wzs-6H-obe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cfq-7N-y8u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="327.536231884058" y="520.98214285714289"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="checkmark" catalog="system" width="64" height="56"/>
         <image name="ellipsis-vertical-512" width="512" height="512"/>
         <image name="house" catalog="system" width="64" height="54"/>
         <image name="house.fill" catalog="system" width="64" height="52"/>

@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 enum AccountState {
     case existingUser
     case newUser
@@ -17,9 +18,7 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    
     @IBOutlet weak var loginButton: UIButton!
-    
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var signUpHere: UIButton!
     
