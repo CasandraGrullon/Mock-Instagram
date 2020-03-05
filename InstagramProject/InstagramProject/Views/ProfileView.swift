@@ -15,7 +15,7 @@ class ProfileView: UIView {
         profilePictureIV.clipsToBounds = true
         profilePictureIV.layer.cornerRadius = 13
         addProfilePictureButton.clipsToBounds = true
-        addProfilePictureButton.layer.cornerRadius = 13
+        addProfilePictureButton.layer.cornerRadius = 14
     }
     
     public lazy var scrollView: UIScrollView = {
@@ -36,37 +36,38 @@ class ProfileView: UIView {
     }()
     public lazy var addProfilePictureButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
+        button.setImage(UIImage(systemName: "plus"), for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.9599753022, green: 0.2773778737, blue: 0.742610991, alpha: 1)
         button.tintColor = .white
         return button
     }()
-    public lazy var labelNumbersStack: UIStackView = {
+    public lazy var statsLabelsStack: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [numberOfPosts, numberOfFollowers, numberFollowing])
         stack.axis = .horizontal
         stack.alignment = .center
         stack.distribution = .equalSpacing
+        stack.backgroundColor = .black
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
     public lazy var numberOfPosts: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 2
-        label.text = "# of posts"
+        label.numberOfLines = 0
+        label.text = "# of \nposts"
         label.font = UIFont(name: "Euphemia UCAS", size: 17)
         return label
     }()
     public lazy var numberOfFollowers: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 2
-        label.text = "# of followers"
+        label.numberOfLines = 0
+        label.text = "# of \nfollowers"
         label.font = UIFont(name: "Euphemia UCAS", size: 17)
         return label
     }()
     public lazy var numberFollowing: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 2
-        label.text = "# following"
+        label.numberOfLines = 0
+        label.text = "# \nfollowing"
         label.font = UIFont(name: "Euphemia UCAS", size: 17)
         return label
     }()
@@ -75,6 +76,7 @@ class ProfileView: UIView {
         label.numberOfLines = 1
         label.font = UIFont(name: "Euphemia UCAS", size: 17)
         label.textAlignment = .left
+        label.text = "full name"
         return label
     }()
     public lazy var bioLabel: UILabel = {
@@ -82,6 +84,7 @@ class ProfileView: UIView {
         label.numberOfLines = 0
         label.font = UIFont(name: "Euphemia UCAS", size: 17)
         label.textAlignment = .left
+        label.text = "bio"
         return label
     }()
     public lazy var segmentedControll: UISegmentedControl = {
@@ -89,8 +92,9 @@ class ProfileView: UIView {
         let segment = UISegmentedControl(items: items as [Any])
         segment.selectedSegmentIndex = 0
         segment.backgroundColor = .white
-        segment.tintColor = .systemGray
+        segment.tintColor = .white
         segment.selectedSegmentTintColor = #colorLiteral(red: 0.9599753022, green: 0.2773778737, blue: 0.742610991, alpha: 1)
+        segment.alpha = 0.5
         return segment
     }()
     public var collectionView: UICollectionView = {
@@ -111,6 +115,13 @@ class ProfileView: UIView {
     private func commonInit() {
         scrollConstraints()
         contentViewConstraints()
+        profilePictureConstraint()
+        addButtonConstraints()
+        statsStackConstraints()
+        nameLabelConstraints()
+        bioConstraints()
+        segmentConstraints()
+        collectionConstraints()
     }
     
     private func scrollConstraints() {
@@ -146,16 +157,71 @@ class ProfileView: UIView {
         NSLayoutConstraint.activate([
             profilePictureIV.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
             profilePictureIV.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-        
+            profilePictureIV.widthAnchor.constraint(equalToConstant: 100),
+            profilePictureIV.heightAnchor.constraint(equalTo: profilePictureIV.widthAnchor)
         ])
     }
-//    private func addButtonConstraints() {
-//        addSubview(addProfilePictureButton)
-//        addProfilePictureButton.translatesAutoresizingMaskIntoConstraints = false
-//
-//        NSLayoutConstraint.activate([
-//            addProfilePictureButton.topAnchor.constraint(equalTo: <#T##NSLayoutAnchor<NSLayoutYAxisAnchor>#>)
-//        ])
-//    }
+    private func addButtonConstraints() {
+        addSubview(addProfilePictureButton)
+        addProfilePictureButton.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            addProfilePictureButton.topAnchor.constraint(equalTo: profilePictureIV.bottomAnchor, constant: -20),
+            addProfilePictureButton.leadingAnchor.constraint(equalTo: profilePictureIV.trailingAnchor, constant: -20),
+            addProfilePictureButton.widthAnchor.constraint(equalTo: profilePictureIV.widthAnchor, multiplier: 0.3),
+            addProfilePictureButton.heightAnchor.constraint(equalTo: addProfilePictureButton.widthAnchor)
+        ])
+    }
+    private func statsStackConstraints() {
+        addSubview(statsLabelsStack)
+        statsLabelsStack.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            statsLabelsStack.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
+            statsLabelsStack.leadingAnchor.constraint(equalTo: profilePictureIV.trailingAnchor, constant: 20),
+            statsLabelsStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            statsLabelsStack.heightAnchor.constraint(equalTo: profilePictureIV.heightAnchor, multiplier: 0.5)
+        ])
+    }
+    private func nameLabelConstraints() {
+        addSubview(fullNameLabel)
+        fullNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            fullNameLabel.topAnchor.constraint(equalTo: profilePictureIV.bottomAnchor, constant: 20),
+            fullNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            fullNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
+        ])
+    }
+    private func bioConstraints() {
+        addSubview(bioLabel)
+        bioLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            bioLabel.topAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: 8),
+            bioLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            bioLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
+        ])
+    }
+    private func segmentConstraints() {
+        addSubview(segmentedControll)
+        segmentedControll.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            segmentedControll.topAnchor.constraint(equalTo: bioLabel.bottomAnchor, constant: 20),
+            segmentedControll.trailingAnchor.constraint(equalTo: trailingAnchor),
+            segmentedControll.leadingAnchor.constraint(equalTo: leadingAnchor),
+            segmentedControll.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+    private func collectionConstraints() {
+        addSubview(collectionView)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: segmentedControll.bottomAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor)
+        ])
+    }
     
 }
