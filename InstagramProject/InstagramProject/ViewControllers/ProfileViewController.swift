@@ -13,6 +13,21 @@ class ProfileViewController: UIViewController {
 
     private let profileView = ProfileView()
     
+    //public var user: InstagramUser
+    public var userPosts = [InstagramPost]() {
+        didSet {
+            //userPosts = userPosts.filter { $0.userId == user.userId}
+            DispatchQueue.main.async {
+                self.profileView.collectionView.reloadData()
+            }
+            if userPosts.isEmpty {
+                profileView.collectionView.backgroundView = EmptyView(title: "No posts!", message: "create your own post on the second tab")
+            } else {
+                profileView.collectionView.backgroundView = nil
+            }
+        }
+    }
+    
     private lazy var imagePickerController: UIImagePickerController = {
         let picker = UIImagePickerController()
         picker.delegate = self
@@ -22,11 +37,10 @@ class ProfileViewController: UIViewController {
         didSet{
             DispatchQueue.main.async {
                 self.profileView.profilePictureIV.image = self.selectedImage
-
             }
         }
     }
-    
+        
     override func loadView() {
         view = profileView
     }
@@ -55,7 +69,9 @@ class ProfileViewController: UIViewController {
     }
 
     @objc private func editButtonPressed(_ sender: UIBarButtonItem) {
-       let editProfileVC = EditProfileViewController()
+       //let editProfileVC = EditProfileViewController()
+        let storyboard = UIStoryboard(name: "Instagram", bundle: nil)
+        let editProfileVC = storyboard.instantiateViewController(identifier: "EditProfileViewController")
         navigationController?.pushViewController(editProfileVC, animated: true)
     }
     

@@ -14,7 +14,6 @@ class InstagramFeedViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     private var listener: ListenerRegistration?
-    
     private var instagramPosts = [InstagramPost]() {
         didSet {
             DispatchQueue.main.async {
@@ -36,7 +35,6 @@ class InstagramFeedViewController: UIViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        
         listener = Firestore.firestore().collection(DatabaseService.instagramPostCollection).addSnapshotListener({ (snapshot, error) in
             if let error = error {
                 DispatchQueue.main.async {
@@ -52,6 +50,7 @@ class InstagramFeedViewController: UIViewController {
         super.viewWillDisappear(true)
         listener?.remove()
     }
+
     
     
     

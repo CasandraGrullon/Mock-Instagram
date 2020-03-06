@@ -39,6 +39,7 @@ class AddPhotoViewController: UIViewController {
         super.viewDidLoad()
         cameraDisabled()
         nextButton.isEnabled = false
+        captionTF.delegate = self
     }
     
     private func cameraDisabled() {
@@ -69,7 +70,6 @@ class AddPhotoViewController: UIViewController {
                 self?.uploadPhoto(photo: resizeImage, documentId: docID)
             }
         }
-        
         tabBarController?.selectedIndex = 0
     }
     private func uploadPhoto(photo: UIImage, documentId: String) {
@@ -85,7 +85,6 @@ class AddPhotoViewController: UIViewController {
         }
     }
     private func updateImageURL(_ url: URL, documentId: String) {
-
         Firestore.firestore().collection(DatabaseService.instagramPostCollection).document(documentId).updateData(["imageURL": url.absoluteString]) { [weak self] (error) in
             if let error = error {
                 DispatchQueue.main.async {
@@ -134,7 +133,6 @@ class AddPhotoViewController: UIViewController {
         alertController.addAction(cancelAction)
         
         present(alertController, animated: true)
-        
     }
     
     
@@ -153,4 +151,10 @@ extension AddPhotoViewController: UIImagePickerControllerDelegate, UINavigationC
         dismiss(animated: true)
     }
     
+}
+extension AddPhotoViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }

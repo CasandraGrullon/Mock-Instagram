@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct User {
+struct InstagramUser {
     let username: String
     let userBio: String
     let userId: String
@@ -16,7 +16,7 @@ struct User {
     let userEmail: String
 }
 
-extension User {
+extension InstagramUser {
     init(_ dictionary: [String : Any]) {
         self.username = dictionary["username"] as? String ?? "no username"
         self.userBio = dictionary["userBio"] as? String ?? "no bio"

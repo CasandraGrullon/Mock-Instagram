@@ -20,6 +20,16 @@ class EditProfileViewController: UIViewController {
     
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
+    //public var igUser: InstagramUser
+    public var fireUser: User!
+    
+//    init(_ user: InstagramUser) {
+//        self.igUser = user
+//        super.init(nibName: nil, bundle: nil)
+//    }
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
     
     private lazy var imagePickerController: UIImagePickerController = {
         let picker = UIImagePickerController()
@@ -40,7 +50,6 @@ class EditProfileViewController: UIViewController {
         super.viewDidLoad()
         usernameTextfield.delegate = self
         updateUI()
-        
     }
     
     private func updateUI() {
@@ -76,7 +85,9 @@ class EditProfileViewController: UIViewController {
     
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
         guard let username = usernameTextfield.text, !username.isEmpty,
-            let profilePicture = selectedImage else {
+            let profilePicture = selectedImage,
+            let userBio = bioTextField.text, !userBio.isEmpty,
+            let fullName = fullNameTF.text, !fullName.isEmpty else {
                 showAlert(title: "Missing Fields", message: "All fields are required")
                 return
         }
@@ -110,9 +121,9 @@ class EditProfileViewController: UIViewController {
                 })
             }
         }
-        
-        
     }
+    
+    
     
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
         let profileVC = ProfileViewController()
