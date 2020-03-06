@@ -15,7 +15,11 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var profilePictureView: UIImageView!
     @IBOutlet weak var usernameTextfield: UITextField!
     @IBOutlet weak var emailTextfield: UITextField!
+    @IBOutlet weak var fullNameTF: UITextField!
+    @IBOutlet weak var bioTextField: UITextField!
+    
     @IBOutlet weak var doneButton: UIBarButtonItem!
+    
     
     private lazy var imagePickerController: UIImagePickerController = {
         let picker = UIImagePickerController()
@@ -25,7 +29,9 @@ class EditProfileViewController: UIViewController {
     
     private var selectedImage: UIImage? {
         didSet{
-            
+            DispatchQueue.main.async {
+                self.profilePictureView.image = self.selectedImage
+            }
         }
     }
     private var storageService = StorageService()
@@ -109,7 +115,8 @@ class EditProfileViewController: UIViewController {
     }
     
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
-        
+        let profileVC = ProfileViewController()
+        navigationController?.pushViewController(profileVC, animated: true)
     }
     
 }

@@ -9,8 +9,18 @@
 import Foundation
 
 struct InstagramPost {
-    let postId: String
+    //let postId: String
     let userName: String
+    let userId: String
     let caption: String
-    let photo: String
+    let photoURL: String
+}
+extension InstagramPost {
+    init(_ dictionary: [String : Any]) {
+        //self.postId = dictionary["postId"] as? String ?? "no photo id"
+        self.userName = dictionary["userName"] as? String ?? "no username"
+        self.userId = dictionary["userId"] as? String ?? "no user id"
+        self.caption = dictionary["caption"] as? String ?? "caption"
+        self.photoURL = dictionary["photoUrl"] as? String ?? "photo"
+    }
 }

@@ -38,46 +38,32 @@
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NGS-WR-Pmj">
                                 <rect key="frame" x="0.0" y="88" width="414" height="493"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iEC-i7-zd4">
                                 <rect key="frame" x="0.0" y="764" width="414" height="49"/>
                                 <items>
                                     <barButtonItem title="GALLERY" id="jnX-K9-bE1">
                                         <color key="tintColor" red="0.88636819389999999" green="0.33302431659999998" blue="0.72576950920000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <connections>
+                                            <action selector="galleryButtonPressed:" destination="QBV-G1-OLK" id="44O-HK-fWx"/>
+                                        </connections>
                                     </barButtonItem>
                                     <barButtonItem width="238" style="plain" systemItem="fixedSpace" id="CV2-0A-hxt"/>
                                     <barButtonItem title="CAMERA" id="JH1-dw-3sl">
                                         <color key="tintColor" red="0.88636819389999999" green="0.33302431659999998" blue="0.72576950920000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <connections>
+                                            <action selector="cameraButtonPressed:" destination="QBV-G1-OLK" id="eQz-cM-oPp"/>
+                                        </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tjO-Hc-ebN" customClass="DesignableButton" customModule="InstagramProject" customModuleProvider="target">
-                                <rect key="frame" x="182" y="631" width="50" height="50"/>
-                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="0fH-4j-2LP"/>
-                                    <constraint firstAttribute="height" constant="50" id="CpM-Hf-uUo"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="EuphemiaUCAS-Bold" family="Euphemia UCAS" pointSize="17"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Done"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="25"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="NGS-WR-Pmj" firstAttribute="leading" secondItem="adp-2M-9jh" secondAttribute="leading" id="4pZ-VY-3NJ"/>
                             <constraint firstItem="NGS-WR-Pmj" firstAttribute="top" secondItem="adp-2M-9jh" secondAttribute="top" id="KS3-UY-Okl"/>
-                            <constraint firstItem="tjO-Hc-ebN" firstAttribute="centerX" secondItem="vxg-2A-SRr" secondAttribute="centerX" id="Sd2-Qc-DM6"/>
                             <constraint firstItem="iEC-i7-zd4" firstAttribute="bottom" secondItem="adp-2M-9jh" secondAttribute="bottom" id="VKa-Sp-aOS"/>
-                            <constraint firstItem="tjO-Hc-ebN" firstAttribute="top" secondItem="NGS-WR-Pmj" secondAttribute="bottom" constant="50" id="WUy-mZ-vwN"/>
                             <constraint firstItem="NGS-WR-Pmj" firstAttribute="height" secondItem="vxg-2A-SRr" secondAttribute="height" multiplier="0.55" id="bqR-Ic-d43"/>
                             <constraint firstItem="iEC-i7-zd4" firstAttribute="leading" secondItem="adp-2M-9jh" secondAttribute="leading" id="eae-2z-26A"/>
                             <constraint firstItem="adp-2M-9jh" firstAttribute="trailing" secondItem="NGS-WR-Pmj" secondAttribute="trailing" id="qUy-fG-lel"/>
@@ -88,15 +74,26 @@
                     <navigationItem key="navigationItem" id="ev7-ei-sXB">
                         <barButtonItem key="leftBarButtonItem" image="xmark" catalog="system" id="G8F-6z-vp7">
                             <color key="tintColor" red="0.88636819389999999" green="0.33302431659999998" blue="0.72576950920000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <connections>
+                                <action selector="cancelButtonPressed:" destination="QBV-G1-OLK" id="yWs-qX-ild"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Next" id="Had-nR-Whu">
                             <color key="tintColor" red="0.88636819389999999" green="0.33302431659999998" blue="0.72576950920000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <connections>
+                                <action selector="nextButtonPressed:" destination="QBV-G1-OLK" id="yjX-mB-Ivr"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="cameraButton" destination="JH1-dw-3sl" id="G3Q-SM-2Z8"/>
+                        <outlet property="nextButton" destination="Had-nR-Whu" id="jRf-8r-Gz3"/>
+                        <outlet property="postImageView" destination="NGS-WR-Pmj" id="yfb-R1-2j2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eai-9k-Mkj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="287" y="-186"/>
+            <point key="canvasLocation" x="286.95652173913044" y="-186.16071428571428"/>
         </scene>
         <!--Instagram Feed View Controller-->
         <scene sceneID="2zP-nh-dHJ">
@@ -109,7 +106,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="BjD-ui-2el">
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="UYa-Ra-Bom">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="UYa-Ra-Bom">
                                     <size key="itemSize" width="414" height="377"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -129,12 +126,18 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5q5-LD-Vza">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5q5-LD-Vza" customClass="DesignableImageView" customModule="InstagramProject" customModuleProvider="target">
                                                     <rect key="frame" x="10" y="8" width="40" height="40"/>
+                                                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="DeO-iy-QT3"/>
                                                         <constraint firstAttribute="width" constant="40" id="HDe-Br-SdC"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="20"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4pa-5W-5u2">
                                                     <rect key="frame" x="362" y="6" width="44" height="44"/>
@@ -292,12 +295,39 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kjx-pl-MsL">
+                                <rect key="frame" x="10" y="402.5" width="394" height="22.5"/>
+                                <fontDescription key="fontDescription" name="EuphemiaUCAS" family="Euphemia UCAS" pointSize="17"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Lz-Wq-LS7">
+                                <rect key="frame" x="10" y="433" width="394" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WCD-yG-J3R">
+                                <rect key="frame" x="10" y="477" width="394" height="22.5"/>
+                                <fontDescription key="fontDescription" name="EuphemiaUCAS" family="Euphemia UCAS" pointSize="17"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cYd-mE-qlN">
+                                <rect key="frame" x="10" y="507.5" width="394" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="kjx-pl-MsL" firstAttribute="top" secondItem="XSV-2J-sGN" secondAttribute="bottom" constant="10" id="22S-vX-zbo"/>
+                            <constraint firstItem="5Lz-Wq-LS7" firstAttribute="leading" secondItem="CY6-VI-Kic" secondAttribute="leading" constant="10" id="2Yi-BT-e3d"/>
+                            <constraint firstItem="WCD-yG-J3R" firstAttribute="leading" secondItem="CY6-VI-Kic" secondAttribute="leading" constant="10" id="3nc-ut-Gl0"/>
                             <constraint firstItem="EQh-Sd-hH3" firstAttribute="top" secondItem="t6C-uX-i0B" secondAttribute="bottom" constant="10" id="707-1p-Ac0"/>
+                            <constraint firstItem="CY6-VI-Kic" firstAttribute="trailing" secondItem="WCD-yG-J3R" secondAttribute="trailing" constant="10" id="8SI-3T-TRv"/>
                             <constraint firstItem="xkN-zJ-A0B" firstAttribute="top" secondItem="CY6-VI-Kic" secondAttribute="top" constant="10" id="8su-6x-oTa"/>
                             <constraint firstItem="EQh-Sd-hH3" firstAttribute="leading" secondItem="CY6-VI-Kic" secondAttribute="leading" constant="10" id="97A-EW-Vp0"/>
+                            <constraint firstItem="cYd-mE-qlN" firstAttribute="top" secondItem="WCD-yG-J3R" secondAttribute="bottom" constant="8" id="AhD-FB-tL3"/>
                             <constraint firstItem="xkN-zJ-A0B" firstAttribute="centerX" secondItem="CY6-VI-Kic" secondAttribute="centerX" id="B1t-Gb-8LR"/>
                             <constraint firstItem="t6C-uX-i0B" firstAttribute="top" secondItem="vhj-XC-3jH" secondAttribute="bottom" constant="8" id="BJt-mL-265"/>
                             <constraint firstItem="CY6-VI-Kic" firstAttribute="trailing" secondItem="XSV-2J-sGN" secondAttribute="trailing" constant="10" id="Ca3-S6-Mu2"/>
@@ -306,11 +336,18 @@
                             <constraint firstItem="XSV-2J-sGN" firstAttribute="top" secondItem="EQh-Sd-hH3" secondAttribute="bottom" constant="8" id="J2n-l9-Q9d"/>
                             <constraint firstItem="CY6-VI-Kic" firstAttribute="trailing" secondItem="vhj-XC-3jH" secondAttribute="trailing" constant="10" id="Qfo-yR-92D"/>
                             <constraint firstItem="dSJ-bU-Ihn" firstAttribute="centerX" secondItem="xkN-zJ-A0B" secondAttribute="centerX" id="QwF-2r-tHs"/>
+                            <constraint firstItem="CY6-VI-Kic" firstAttribute="trailing" secondItem="kjx-pl-MsL" secondAttribute="trailing" constant="10" id="Sdv-KA-WnG"/>
                             <constraint firstItem="vhj-XC-3jH" firstAttribute="top" secondItem="dSJ-bU-Ihn" secondAttribute="bottom" constant="10" id="d3Z-kF-inf"/>
+                            <constraint firstItem="5Lz-Wq-LS7" firstAttribute="top" secondItem="kjx-pl-MsL" secondAttribute="bottom" constant="8" id="dtx-FI-rPe"/>
+                            <constraint firstItem="WCD-yG-J3R" firstAttribute="top" secondItem="5Lz-Wq-LS7" secondAttribute="bottom" constant="10" id="f7u-Zl-2fe"/>
+                            <constraint firstItem="CY6-VI-Kic" firstAttribute="trailing" secondItem="cYd-mE-qlN" secondAttribute="trailing" constant="10" id="fBM-Lr-Ro0"/>
                             <constraint firstItem="t6C-uX-i0B" firstAttribute="leading" secondItem="CY6-VI-Kic" secondAttribute="leading" constant="10" id="gn4-OF-mva"/>
                             <constraint firstItem="CY6-VI-Kic" firstAttribute="trailing" secondItem="EQh-Sd-hH3" secondAttribute="trailing" constant="10" id="hSs-wQ-HFR"/>
+                            <constraint firstItem="CY6-VI-Kic" firstAttribute="trailing" secondItem="5Lz-Wq-LS7" secondAttribute="trailing" constant="10" id="hrG-4v-S6w"/>
                             <constraint firstItem="vhj-XC-3jH" firstAttribute="leading" secondItem="CY6-VI-Kic" secondAttribute="leading" constant="10" id="iH4-2k-8DI"/>
+                            <constraint firstItem="cYd-mE-qlN" firstAttribute="leading" secondItem="CY6-VI-Kic" secondAttribute="leading" constant="10" id="tLW-hp-oaH"/>
                             <constraint firstItem="dSJ-bU-Ihn" firstAttribute="top" secondItem="xkN-zJ-A0B" secondAttribute="bottom" constant="10" id="vqK-5r-1Q2"/>
+                            <constraint firstItem="kjx-pl-MsL" firstAttribute="leading" secondItem="CY6-VI-Kic" secondAttribute="leading" constant="10" id="x6i-u4-2dv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="CY6-VI-Kic"/>
                     </view>
@@ -329,8 +366,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bioTextField" destination="cYd-mE-qlN" id="W8I-Tt-ZMC"/>
                         <outlet property="doneButton" destination="y97-8y-CCP" id="ACL-t2-RL3"/>
                         <outlet property="emailTextfield" destination="XSV-2J-sGN" id="RQa-a7-UWX"/>
+                        <outlet property="fullNameTF" destination="5Lz-Wq-LS7" id="zJi-k5-lC3"/>
                         <outlet property="profilePictureView" destination="xkN-zJ-A0B" id="JkU-2W-21v"/>
                         <outlet property="usernameTextfield" destination="t6C-uX-i0B" id="Ucv-oo-Rva"/>
                     </connections>

@@ -31,6 +31,9 @@
 		C6B5D6BC241183CD004D768E /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B5D6BB241183CD004D768E /* EditProfileViewController.swift */; };
 		C6B5D6BE24118A41004D768E /* ResizeImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B5D6BD24118A41004D768E /* ResizeImage.swift */; };
 		C6B5D6C024118B9C004D768E /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B5D6BF24118B9C004D768E /* StorageService.swift */; };
+		C6B5D6C22411BA42004D768E /* EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B5D6C12411BA42004D768E /* EmptyState.swift */; };
+		C6B5D6C62411C4E6004D768E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B5D6C52411C4E6004D768E /* User.swift */; };
+		C6B5D6C82411C824004D768E /* PhotoGalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B5D6C72411C824004D768E /* PhotoGalleryCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +64,9 @@
 		C6B5D6BB241183CD004D768E /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		C6B5D6BD24118A41004D768E /* ResizeImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizeImage.swift; sourceTree = "<group>"; };
 		C6B5D6BF24118B9C004D768E /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		C6B5D6C12411BA42004D768E /* EmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyState.swift; sourceTree = "<group>"; };
+		C6B5D6C52411C4E6004D768E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		C6B5D6C72411C824004D768E /* PhotoGalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryCell.swift; sourceTree = "<group>"; };
 		F48E36CB0392BB3903EE884F /* Pods_InstagramProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstagramProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -88,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				C61918E1241149B800D351C7 /* InstagramPost.swift */,
+				C6B5D6C52411C4E6004D768E /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -99,6 +106,7 @@
 				C6479E71240EF655007CFE84 /* Gradient.swift */,
 				C6479E80240F055E007CFE84 /* ShowAlert.swift */,
 				C6B5D6BD24118A41004D768E /* ResizeImage.swift */,
+				C6B5D6C12411BA42004D768E /* EmptyState.swift */,
 			);
 			path = ViewExtras;
 			sourceTree = "<group>";
@@ -134,6 +142,7 @@
 			children = (
 				C6479E89240F10D3007CFE84 /* ProfileView.swift */,
 				C61918DF2411481800D351C7 /* InstagramFeedCell.swift */,
+				C6B5D6C72411C824004D768E /* PhotoGalleryCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -315,6 +324,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6B5D6C82411C824004D768E /* PhotoGalleryCell.swift in Sources */,
 				C6B5D6BC241183CD004D768E /* EditProfileViewController.swift in Sources */,
 				C6479E74240EF80D007CFE84 /* ProfileViewController.swift in Sources */,
 				C6479E8A240F10D3007CFE84 /* ProfileView.swift in Sources */,
@@ -329,10 +339,12 @@
 				C6479E7A240EF872007CFE84 /* AddPhotoViewController.swift in Sources */,
 				C6479E7F240F022B007CFE84 /* AuthenticationSession.swift in Sources */,
 				C6B5D6BE24118A41004D768E /* ResizeImage.swift in Sources */,
+				C6B5D6C22411BA42004D768E /* EmptyState.swift in Sources */,
 				C6479E81240F055E007CFE84 /* ShowAlert.swift in Sources */,
 				C6479E78240EF855007CFE84 /* InstagramFeedViewController.swift in Sources */,
 				C61918E2241149B800D351C7 /* InstagramPost.swift in Sources */,
 				C6479E84240F0718007CFE84 /* UIViewController+Navigation.swift in Sources */,
+				C6B5D6C62411C4E6004D768E /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

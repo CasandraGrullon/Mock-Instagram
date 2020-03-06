@@ -17,6 +17,11 @@ class InstagramFeedViewController: UIViewController {
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
+            if instagramPosts.isEmpty {
+                collectionView.backgroundView = EmptyView(title: "No Posts!", message: "Add a new post or follow another user to see more posts!")
+            } else {
+                collectionView.backgroundView = nil
+            }
         }
     }
     
@@ -26,6 +31,8 @@ class InstagramFeedViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
     }
+    
+    
     
 
 }
@@ -39,15 +46,20 @@ extension InstagramFeedViewController: UICollectionViewDelegateFlowLayout {
 }
 extension InstagramFeedViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return instagramPosts.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "instagramFeedCell", for: indexPath) as? InstagramFeedCell else {
             fatalError("could not cast to instagram feed cell")
         }
-        let post = instagramPosts[indexPath.row]
-        cell.configureCell(post: post)
+        if instagramPosts.isEmpty {
+            cell.backgroundView = EmptyView(title: "Empty", message: "add a post!")
+        } else {
+            let post = instagramPosts[indexPath.row]
+           cell.configureCell(post: post)
+        }
+        
         return cell
     }
     
