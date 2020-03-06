@@ -51,12 +51,10 @@ class AddPhotoViewController: UIViewController {
         
         postImageView.image = photoPicked
         
-
     }
     
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
-        //when pressed go back to feed
-        
+        tabBarController?.selectedIndex = 0
     }
     
     @IBAction func galleryButtonPressed(_ sender: UIBarButtonItem) {
@@ -69,7 +67,6 @@ class AddPhotoViewController: UIViewController {
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         
-
         alertController.addAction(photoLibrary)
         alertController.addAction(cancelAction)
         
