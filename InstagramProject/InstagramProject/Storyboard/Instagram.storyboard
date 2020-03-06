@@ -92,14 +92,14 @@
                         <barButtonItem key="rightBarButtonItem" title="Post" style="done" id="Had-nR-Whu">
                             <color key="tintColor" red="0.88636819389999999" green="0.33302431659999998" blue="0.72576950920000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
-                                <action selector="nextButtonPressed:" destination="QBV-G1-OLK" id="yjX-mB-Ivr"/>
+                                <action selector="nextButtonPressed:" destination="QBV-G1-OLK" id="Hd4-Nb-56j"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="cameraButton" destination="JH1-dw-3sl" id="G3Q-SM-2Z8"/>
                         <outlet property="captionTF" destination="NIL-7k-AWF" id="eGg-sl-wLv"/>
-                        <outlet property="nextButton" destination="Had-nR-Whu" id="jRf-8r-Gz3"/>
+                        <outlet property="nextButton" destination="Had-nR-Whu" id="RMK-CQ-6EF"/>
                         <outlet property="postImageView" destination="NGS-WR-Pmj" id="yfb-R1-2j2"/>
                     </connections>
                 </viewController>

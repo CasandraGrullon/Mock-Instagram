@@ -31,6 +31,7 @@ class ProfileView: UIView {
     public lazy var profilePictureIV: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
+        imageView.backgroundColor = .systemGray
         imageView.image = UIImage(systemName: "person")
         return imageView
     }()

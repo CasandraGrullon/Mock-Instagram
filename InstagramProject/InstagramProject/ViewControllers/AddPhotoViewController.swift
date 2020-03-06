@@ -11,7 +11,7 @@ import FirebaseAuth
 import FirebaseFirestore
 
 class AddPhotoViewController: UIViewController {
-
+    
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var nextButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
@@ -35,7 +35,6 @@ class AddPhotoViewController: UIViewController {
         return picker
     }()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         cameraDisabled()
@@ -53,19 +52,51 @@ class AddPhotoViewController: UIViewController {
     @IBAction func nextButtonPressed(_ sender: UIBarButtonItem) {
         guard let photoPicked = selectedImage,
             let caption = captionTF.text, !caption.isEmpty,
-            let user = Auth.auth().currentUser else {
-            return
+            let user = Auth.auth().currentUser, let username = user.displayName else {
+                return
         }
         postImageView.image = photoPicked
         
         let resizeImage = UIImage.resizeImage(originalImage: photoPicked, rect: postImageView.bounds)
         
-        
-        
-        
+        dbService.createPost(username: username, userId: user.uid, caption: caption) { [weak self] (result) in
+            switch result {
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Could not create post", message: "\(error)")
+                }
+            case .success(let docID):
+                self?.uploadPhoto(photo: resizeImage, documentId: docID)
+            }
+        }
         
         tabBarController?.selectedIndex = 0
-        
+    }
+    private func uploadPhoto(photo: UIImage, documentId: String) {
+        storageService.uploadPhoto(postId: documentId, image: photo) { [weak self] (result) in
+            switch result {
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Could not upload photo", message: "\(error)")
+                }
+            case .success(let url):
+                self?.updateImageURL(url, documentId: documentId)
+            }
+        }
+    }
+    private func updateImageURL(_ url: URL, documentId: String) {
+
+        Firestore.firestore().collection(DatabaseService.instagramPostCollection).document(documentId).updateData(["imageURL": url.absoluteString]) { [weak self] (error) in
+            if let error = error {
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Failed to update item", message: "\(error)")
+                }
+            }else {
+                DispatchQueue.main.async {
+                    self?.dismiss(animated: true)
+                }
+            }
+        }
     }
     
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
@@ -103,7 +134,7 @@ class AddPhotoViewController: UIViewController {
         alertController.addAction(cancelAction)
         
         present(alertController, animated: true)
-
+        
     }
     
     

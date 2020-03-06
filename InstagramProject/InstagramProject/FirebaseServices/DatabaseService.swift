@@ -30,11 +30,11 @@ class DatabaseService {
         
     }
     
-    public func createPost(username: String, userId: String, caption: String, photoURL: String, completion: @escaping (Result<String, Error>) -> ()) {
+    public func createPost(username: String, userId: String, caption: String, completion: @escaping (Result<String, Error>) -> ()) {
         
         guard let user = Auth.auth().currentUser, let displayName = user.displayName else { return }
         let documentRef = db.collection(DatabaseService.instagramPostCollection).document()
-        db.collection(DatabaseService.instagramPostCollection).document(documentRef.documentID).setData(["username" : displayName, "userId": user.uid, "caption": caption, "photoURL": photoURL]) { (error) in
+        db.collection(DatabaseService.instagramPostCollection).document(documentRef.documentID).setData(["username" : displayName, "userId": user.uid, "caption": caption]) { (error) in
             if let error = error {
                 completion(.failure(error))
             } else {

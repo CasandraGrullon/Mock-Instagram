@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class InstagramFeedViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    private var listener: ListenerRegistration?
     
     private var instagramPosts = [InstagramPost]() {
         didSet {
@@ -30,6 +33,24 @@ class InstagramFeedViewController: UIViewController {
         
         collectionView.delegate = self
         collectionView.dataSource = self
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        listener = Firestore.firestore().collection(DatabaseService.instagramPostCollection).addSnapshotListener({ (snapshot, error) in
+            if let error = error {
+                DispatchQueue.main.async {
+                    self.showAlert(title: "Fire Store Error", message: "\(error)")
+                }
+            } else if let snapshot = snapshot {
+                let posts = snapshot.documents.map {InstagramPost ($0.data()) }
+                self.instagramPosts = posts
+            }
+        })
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        listener?.remove()
     }
     
     
