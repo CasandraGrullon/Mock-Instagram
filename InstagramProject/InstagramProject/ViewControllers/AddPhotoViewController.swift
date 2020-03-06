@@ -93,6 +93,9 @@ class AddPhotoViewController: UIViewController {
             }else {
                 DispatchQueue.main.async {
                     self?.dismiss(animated: true)
+                    self?.selectedImage = nil
+                    self?.nextButton.isEnabled = false
+                    self?.captionTF.text = ""
                 }
             }
         }
