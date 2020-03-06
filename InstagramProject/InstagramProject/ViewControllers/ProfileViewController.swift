@@ -17,14 +17,12 @@ enum CollectionState {
 }
 
 class ProfileViewController: UIViewController {
-    
     private let profileView = ProfileView()
     public var igUser: InstagramUser?
     private var listener: ListenerRegistration?
     
     public var userPosts = [InstagramPost]() {
         didSet {
-            print(userPosts)
             DispatchQueue.main.async {
                 self.profileView.collectionView.reloadData()
             }
