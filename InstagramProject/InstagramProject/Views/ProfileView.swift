@@ -13,7 +13,7 @@ class ProfileView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         profilePictureIV.clipsToBounds = true
-        profilePictureIV.layer.cornerRadius = 13
+        profilePictureIV.layer.cornerRadius = 20
         addProfilePictureButton.clipsToBounds = true
         addProfilePictureButton.layer.cornerRadius = 14
     }
@@ -43,7 +43,7 @@ class ProfileView: UIView {
         return button
     }()
     public lazy var statsLabelsStack: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [numberOfPosts, numberOfFollowers, numberFollowing])
+        let stack = UIStackView(arrangedSubviews: [numberOfPosts])
         stack.axis = .horizontal
         stack.alignment = .center
         stack.distribution = .equalSpacing
@@ -58,20 +58,21 @@ class ProfileView: UIView {
         label.font = UIFont(name: "Euphemia UCAS", size: 17)
         return label
     }()
-    public lazy var numberOfFollowers: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.text = "# of \nfollowers"
-        label.font = UIFont(name: "Euphemia UCAS", size: 17)
-        return label
-    }()
-    public lazy var numberFollowing: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.text = "# \nfollowing"
-        label.font = UIFont(name: "Euphemia UCAS", size: 17)
-        return label
-    }()
+//    public lazy var numberOfFollowers: UILabel = {
+//        let label = UILabel()
+//        label.numberOfLines = 0
+//        label.text = "# of \nfollowers"
+//        label.font = UIFont(name: "Euphemia UCAS", size: 17)
+//        return label
+//    }()
+//    public lazy var numberFollowing: UILabel = {
+//        let label = UILabel()
+//        label.numberOfLines = 0
+//        label.text = "# \nfollowing"
+//        label.font = UIFont(name: "Euphemia UCAS", size: 17)
+//        return label
+//    }()
+    
     public lazy var fullNameLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
@@ -88,7 +89,7 @@ class ProfileView: UIView {
         label.text = "bio"
         return label
     }()
-    public lazy var segmentedControll: UISegmentedControl = {
+    public lazy var segmentedControl: UISegmentedControl = {
         let items = [UIImage(systemName: "rectangle.split.3x3"), UIImage(systemName: "app")]
         let segment = UISegmentedControl(items: items as [Any])
         segment.selectedSegmentIndex = 0
@@ -101,7 +102,9 @@ class ProfileView: UIView {
     public var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
+        //layout.estimatedItemSize = .
         let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        cv.backgroundColor = .white
         return cv
     }()
     
@@ -204,14 +207,14 @@ class ProfileView: UIView {
         ])
     }
     private func segmentConstraints() {
-        addSubview(segmentedControll)
-        segmentedControll.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(segmentedControl)
+        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            segmentedControll.topAnchor.constraint(equalTo: bioLabel.bottomAnchor, constant: 20),
-            segmentedControll.trailingAnchor.constraint(equalTo: trailingAnchor),
-            segmentedControll.leadingAnchor.constraint(equalTo: leadingAnchor),
-            segmentedControll.heightAnchor.constraint(equalToConstant: 50)
+            segmentedControl.topAnchor.constraint(equalTo: bioLabel.bottomAnchor, constant: 20),
+            segmentedControl.trailingAnchor.constraint(equalTo: trailingAnchor),
+            segmentedControl.leadingAnchor.constraint(equalTo: leadingAnchor),
+            segmentedControl.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
     private func collectionConstraints() {
@@ -219,9 +222,10 @@ class ProfileView: UIView {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: segmentedControll.bottomAnchor),
+            collectionView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor)
+            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
         ])
     }
     

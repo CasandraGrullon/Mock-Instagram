@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+import Kingfisher
 
 class InstagramFeedCell: UICollectionViewCell {
  
@@ -16,7 +18,17 @@ class InstagramFeedCell: UICollectionViewCell {
     @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var postImage: UIImageView!
     
+    //private var currentIgUser: InstagramUser?
+    
     public func configureCell(post: InstagramPost) {
+        if let user = Auth.auth().currentUser, let displayname = user.displayName {
+            profilePic.kf.setImage(with: user.photoURL)
+            userNameLabel.text = displayname
+        } else {
+            profilePic.backgroundColor = .systemGray
+            userNameLabel.text = "username"
+        }
+        postImage.kf.setImage(with: URL(string:post.photoURL))
         captionLabel.text = post.caption
     }
     

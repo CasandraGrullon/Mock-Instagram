@@ -20,16 +20,8 @@ class EditProfileViewController: UIViewController {
     
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
-    //public var igUser: InstagramUser
+    public var igUser: InstagramUser?
     public var fireUser: User!
-    
-//    init(_ user: InstagramUser) {
-//        self.igUser = user
-//        super.init(nibName: nil, bundle: nil)
-//    }
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
     
     private lazy var imagePickerController: UIImagePickerController = {
         let picker = UIImagePickerController()
@@ -96,6 +88,7 @@ class EditProfileViewController: UIViewController {
         guard let user = Auth.auth().currentUser else {
             return
         }
+        igUser = InstagramUser(username: username, userBio: userBio, userId: user.uid, userFullName: fullName, userEmail: user.email ?? "")
         
         storageService.uploadPhoto(userId: user.uid, image: resizeImage) { [weak self] (result) in
             switch result {
@@ -117,10 +110,14 @@ class EditProfileViewController: UIViewController {
                         DispatchQueue.main.async {
                             self?.showAlert(title: "Profile Updated", message: "")
                         }
+                        let profileVC = ProfileViewController()
+                        profileVC.igUser = self?.igUser
+                        self?.navigationController?.pushViewController(profileVC, animated: true)
                     }
                 })
             }
         }
+        
     }
     
     

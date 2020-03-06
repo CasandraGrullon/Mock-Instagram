@@ -50,8 +50,6 @@ class InstagramFeedViewController: UIViewController {
         super.viewWillDisappear(true)
         listener?.remove()
     }
-
-    
     
     
 
@@ -59,8 +57,8 @@ class InstagramFeedViewController: UIViewController {
 extension InstagramFeedViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let maxWidth: CGFloat = UIScreen.main.bounds.size.width
-        let itemWidth: CGFloat = maxWidth * 0.80
-        return CGSize(width: itemWidth, height: itemWidth)
+        let itemWidth: CGFloat = maxWidth
+        return CGSize(width: itemWidth, height: itemWidth * 0.90)
     }
 
 }

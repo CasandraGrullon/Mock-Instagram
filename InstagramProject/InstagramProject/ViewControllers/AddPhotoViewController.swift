@@ -85,7 +85,7 @@ class AddPhotoViewController: UIViewController {
         }
     }
     private func updateImageURL(_ url: URL, documentId: String) {
-        Firestore.firestore().collection(DatabaseService.instagramPostCollection).document(documentId).updateData(["imageURL": url.absoluteString]) { [weak self] (error) in
+        Firestore.firestore().collection(DatabaseService.instagramPostCollection).document(documentId).updateData(["photoURL": url.absoluteString]) { [weak self] (error) in
             if let error = error {
                 DispatchQueue.main.async {
                     self?.showAlert(title: "Failed to update item", message: "\(error)")

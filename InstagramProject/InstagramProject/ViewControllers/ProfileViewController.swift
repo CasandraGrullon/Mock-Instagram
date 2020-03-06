@@ -7,16 +7,24 @@
 //
 
 import UIKit
+import Kingfisher
 import FirebaseAuth
+import FirebaseFirestore
+
+enum CollectionState {
+    case threeByThree
+    case one
+}
 
 class ProfileViewController: UIViewController {
-
-    private let profileView = ProfileView()
     
-    //public var user: InstagramUser
+    private let profileView = ProfileView()
+    public var igUser: InstagramUser?
+    private var listener: ListenerRegistration?
+    
     public var userPosts = [InstagramPost]() {
         didSet {
-            //userPosts = userPosts.filter { $0.userId == user.userId}
+            print(userPosts)
             DispatchQueue.main.async {
                 self.profileView.collectionView.reloadData()
             }
@@ -24,6 +32,13 @@ class ProfileViewController: UIViewController {
                 profileView.collectionView.backgroundView = EmptyView(title: "No posts!", message: "create your own post on the second tab")
             } else {
                 profileView.collectionView.backgroundView = nil
+            }
+        }
+    }
+    private var collectionState: CollectionState = .threeByThree {
+        didSet {
+            DispatchQueue.main.async {
+                self.profileView.collectionView.reloadData()
             }
         }
     }
@@ -40,7 +55,7 @@ class ProfileViewController: UIViewController {
             }
         }
     }
-        
+    
     override func loadView() {
         view = profileView
     }
@@ -50,6 +65,30 @@ class ProfileViewController: UIViewController {
         profileView.backgroundColor = .white
         configureNavBar()
         updateUI()
+        profileView.collectionView.delegate = self
+        profileView.collectionView.dataSource = self
+        collectionState = .threeByThree
+        profileView.segmentedControl.addTarget(self, action: #selector(segmentControllerPressed(_:)), for: .valueChanged)
+        profileView.collectionView.register(PhotoGalleryCell.self, forCellWithReuseIdentifier: "photoGalleryCell")
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        listener = Firestore.firestore().collection(DatabaseService.instagramPostCollection).addSnapshotListener({ [weak self] (snapshot, error) in
+            if let error = error {
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Could not get data", message: "\(error)")
+                }
+            } else if let snapshot = snapshot {
+                let posts = snapshot.documents.map { InstagramPost($0.data()) }
+                self?.userPosts = posts
+            }
+        })
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+        listener?.remove()
     }
     
     private func updateUI() {
@@ -57,6 +96,10 @@ class ProfileViewController: UIViewController {
             return
         }
         profileView.profilePictureIV.kf.setImage(with: user.photoURL)
+        profileView.bioLabel.text = igUser?.userBio
+        profileView.fullNameLabel.text = igUser?.userFullName
+        profileView.numberOfPosts.text = "\(userPosts.count)\n#posts"
+        
     }
     
     private func configureNavBar() {
@@ -65,11 +108,31 @@ class ProfileViewController: UIViewController {
         }
         navigationItem.title = user.displayName
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3"), style: .plain, target: self, action: #selector(editButtonPressed(_:)))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(signOutButtonPressed))
         profileView.addProfilePictureButton.addTarget(self, action: #selector(editProfilePictureButtonPressed(_:)), for: .touchUpInside)
     }
-
+    
+    @objc private func segmentControllerPressed(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            collectionState = .threeByThree
+            
+        } else {
+            collectionState = .one
+        }
+        
+    }
+    @objc private func signOutButtonPressed(_ sender: UIBarButtonItem) {
+        do {
+            try Auth.auth().signOut()
+            UIViewController.showViewController(storyboardName: "Main", viewcontrollerID: "LoginViewController")
+        } catch {
+            DispatchQueue.main.async {
+                self.showAlert(title: "Oops... unable to sign out", message: "\(error.localizedDescription)")
+            }
+        }
+    }
+    
     @objc private func editButtonPressed(_ sender: UIBarButtonItem) {
-       //let editProfileVC = EditProfileViewController()
         let storyboard = UIStoryboard(name: "Instagram", bundle: nil)
         let editProfileVC = storyboard.instantiateViewController(identifier: "EditProfileViewController")
         navigationController?.pushViewController(editProfileVC, animated: true)
@@ -89,27 +152,62 @@ class ProfileViewController: UIViewController {
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
-           alertController.addAction(camera)
+            alertController.addAction(camera)
         }
         alertController.addAction(photogallery)
         alertController.addAction(cancel)
         present(alertController, animated: true)
     }
-
+    
 }
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        //guarding against optional image user selected
         guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
             return
         }
-        
         selectedImage = image
-        
-        
         dismiss(animated: true)
     }
+    
+}
+extension ProfileViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionState == .threeByThree {
+            let itemSpacing: CGFloat = 11
+            let maxSize: CGFloat = UIScreen.main.bounds.size.width
+            let numberOfItems: CGFloat = 3
+            let totalSpace: CGFloat = (2 * itemSpacing) + (numberOfItems - 1) * itemSpacing//(numberOfItems * itemSpacing) * 3
+            let itemWidth: CGFloat = (maxSize - totalSpace) / numberOfItems
+            return CGSize(width: itemWidth, height: itemWidth)
+        } else {
+            let maxWidth: CGFloat = UIScreen.main.bounds.size.width
+            let itemWidth: CGFloat = maxWidth
+            return CGSize(width: itemWidth, height: itemWidth * 0.90)
+        }
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+    }
+    
+}
+extension ProfileViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return userPosts.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        guard let cell = profileView.collectionView.dequeueReusableCell(withReuseIdentifier: "photoGalleryCell", for: indexPath) as? PhotoGalleryCell else {
+            fatalError("could not cast to photoGallery Cell")
+        }
+        let post = userPosts[indexPath.row]
+        cell.imageView.clipsToBounds = true
+        cell.imageView.kf.setImage(with: URL(string: post.photoURL))
+        return cell
+        
+    }
+    
     
 }
