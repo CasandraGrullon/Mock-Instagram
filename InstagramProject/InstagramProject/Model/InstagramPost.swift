@@ -10,7 +10,7 @@ import Foundation
 
 struct InstagramPost {
     //let postId: String
-    let userName: String
+    let username: String
     let userId: String
     let caption: String
     let photoURL: String
@@ -18,7 +18,7 @@ struct InstagramPost {
 extension InstagramPost {
     init(_ dictionary: [String : Any]) {
         //self.postId = dictionary["postId"] as? String ?? "no photo id"
-        self.userName = dictionary["userName"] as? String ?? "no username"
+        self.username = dictionary["username"] as? String ?? "no username"
         self.userId = dictionary["userId"] as? String ?? "no user id"
         self.caption = dictionary["caption"] as? String ?? "caption"
         self.photoURL = dictionary["photoUrl"] as? String ?? "photo"

@@ -34,7 +34,7 @@
 		C6B5D6C22411BA42004D768E /* EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B5D6C12411BA42004D768E /* EmptyState.swift */; };
 		C6B5D6C62411C4E6004D768E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B5D6C52411C4E6004D768E /* User.swift */; };
 		C6B5D6C82411C824004D768E /* PhotoGalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B5D6C72411C824004D768E /* PhotoGalleryCell.swift */; };
-		C6B5D6CA2411D67E004D768E /* FinishPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B5D6C92411D67E004D768E /* FinishPostViewController.swift */; };
+		C6B5D6CC241296B1004D768E /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B5D6CB241296B1004D768E /* DatabaseService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,7 +68,7 @@
 		C6B5D6C12411BA42004D768E /* EmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyState.swift; sourceTree = "<group>"; };
 		C6B5D6C52411C4E6004D768E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C6B5D6C72411C824004D768E /* PhotoGalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryCell.swift; sourceTree = "<group>"; };
-		C6B5D6C92411D67E004D768E /* FinishPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishPostViewController.swift; sourceTree = "<group>"; };
+		C6B5D6CB241296B1004D768E /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		F48E36CB0392BB3903EE884F /* Pods_InstagramProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstagramProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -118,6 +118,7 @@
 			children = (
 				C6479E7E240F022B007CFE84 /* AuthenticationSession.swift */,
 				C6B5D6BF24118B9C004D768E /* StorageService.swift */,
+				C6B5D6CB241296B1004D768E /* DatabaseService.swift */,
 			);
 			path = FirebaseServices;
 			sourceTree = "<group>";
@@ -196,7 +197,6 @@
 				C6B5D6BB241183CD004D768E /* EditProfileViewController.swift */,
 				C6479E77240EF855007CFE84 /* InstagramFeedViewController.swift */,
 				C6479E79240EF872007CFE84 /* AddPhotoViewController.swift */,
-				C6B5D6C92411D67E004D768E /* FinishPostViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -337,12 +337,12 @@
 				C6479E70240EF573007CFE84 /* Designable.swift in Sources */,
 				C6B5D6C024118B9C004D768E /* StorageService.swift in Sources */,
 				C61918E02411481800D351C7 /* InstagramFeedCell.swift in Sources */,
+				C6B5D6CC241296B1004D768E /* DatabaseService.swift in Sources */,
 				C69C28D1240EEE1B00CA4D73 /* AppDelegate.swift in Sources */,
 				C69C28D3240EEE1B00CA4D73 /* SceneDelegate.swift in Sources */,
 				C6479E7A240EF872007CFE84 /* AddPhotoViewController.swift in Sources */,
 				C6479E7F240F022B007CFE84 /* AuthenticationSession.swift in Sources */,
 				C6B5D6BE24118A41004D768E /* ResizeImage.swift in Sources */,
-				C6B5D6CA2411D67E004D768E /* FinishPostViewController.swift in Sources */,
 				C6B5D6C22411BA42004D768E /* EmptyState.swift in Sources */,
 				C6479E81240F055E007CFE84 /* ShowAlert.swift in Sources */,
 				C6479E78240EF855007CFE84 /* InstagramFeedViewController.swift in Sources */,

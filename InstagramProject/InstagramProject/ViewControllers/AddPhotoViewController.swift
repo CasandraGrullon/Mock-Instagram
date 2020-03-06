@@ -7,12 +7,18 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseFirestore
 
 class AddPhotoViewController: UIViewController {
 
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var nextButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
+    @IBOutlet weak var captionTF: UITextField!
+    
+    private let dbService = DatabaseService()
+    private let storageService = StorageService()
     
     private var selectedImage: UIImage? {
         didSet{
@@ -45,11 +51,20 @@ class AddPhotoViewController: UIViewController {
     }
     
     @IBAction func nextButtonPressed(_ sender: UIBarButtonItem) {
-        guard let photoPicked = selectedImage else {
+        guard let photoPicked = selectedImage,
+            let caption = captionTF.text, !caption.isEmpty,
+            let user = Auth.auth().currentUser else {
             return
         }
-        
         postImageView.image = photoPicked
+        
+        let resizeImage = UIImage.resizeImage(originalImage: photoPicked, rect: postImageView.bounds)
+        
+        
+        
+        
+        
+        tabBarController?.selectedIndex = 0
         
     }
     
