@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import Kingfisher
+import FirebaseFirestore
 
 class EditProfileViewController: UIViewController {
     
@@ -22,6 +23,7 @@ class EditProfileViewController: UIViewController {
     
     public var igUser: InstagramUser?
     public var fireUser: User!
+    private var db = DatabaseService()
     
     private lazy var imagePickerController: UIImagePickerController = {
         let picker = UIImagePickerController()
@@ -89,6 +91,16 @@ class EditProfileViewController: UIViewController {
             return
         }
         igUser = InstagramUser(username: username, userBio: userBio, userId: user.uid, userFullName: fullName, userEmail: user.email ?? "")
+        db.createUser(username: username, userBio: userBio, userId: user.uid, userFullName: fullName, userEmail: user.email ?? "") { (result) in
+            switch result {
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self.showAlert(title: "Unable to save profile changes", message: "\(error)")
+                }
+            case .success(let docID):
+                Firestore.firestore().collection(DatabaseService.instagramUserCollection).document(docID).updateData(["username": username, "userBio": userBio, "userFullName": fullName])
+            }
+        }
         
         storageService.uploadPhoto(userId: user.uid, image: resizeImage) { [weak self] (result) in
             switch result {

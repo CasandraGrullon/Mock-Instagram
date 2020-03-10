@@ -21,6 +21,8 @@ class ProfileViewController: UIViewController {
     public var igUser: InstagramUser?
     private var listener: ListenerRegistration?
     
+    private var instaUser = [InstagramUser]()
+    
     public var userPosts = [InstagramPost]() {
         didSet {
             DispatchQueue.main.async {
@@ -81,6 +83,10 @@ class ProfileViewController: UIViewController {
             } else if let snapshot = snapshot {
                 let posts = snapshot.documents.map { InstagramPost($0.data()) }
                 self?.userPosts = posts
+                let user = snapshot.documents.map {InstagramUser($0.data())}
+                let firstuser = self?.instaUser.first
+                self?.instaUser = user.filter { $0.userId == firstuser?.userId}
+                self?.updateUI()
             }
         })
     }
@@ -94,8 +100,11 @@ class ProfileViewController: UIViewController {
             return
         }
         profileView.profilePictureIV.kf.setImage(with: user.photoURL)
-        profileView.bioLabel.text = igUser?.userBio
-        profileView.fullNameLabel.text = igUser?.userFullName
+        guard let iguser = instaUser.first else {
+            return
+        }
+        profileView.bioLabel.text = instaUser.first?.userBio
+        profileView.fullNameLabel.text = instaUser.first?.userFullName
         profileView.numberOfPosts.text = "\(userPosts.count)\n#posts"
         
     }
