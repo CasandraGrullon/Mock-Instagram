@@ -21,7 +21,11 @@ class ProfileViewController: UIViewController {
     private var database = DatabaseService()
     private var listener: ListenerRegistration?
     
-    private var instaUser: InstagramUser?
+    private var instaUser: InstagramUser? {
+        didSet {
+            updateUI()
+        }
+    }
     
     public var userPosts = [InstagramPost]() {
         didSet {
@@ -64,8 +68,8 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         profileView.backgroundColor = .white
         configureNavBar()
-        getUserData()
         updateUI()
+        getUserData()
         profileView.collectionView.delegate = self
         profileView.collectionView.dataSource = self
         collectionState = .threeByThree
@@ -76,6 +80,7 @@ class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        updateUI()
         listener = Firestore.firestore().collection(DatabaseService.instagramPostCollection).addSnapshotListener({ [weak self] (snapshot, error) in
             if let error = error {
                 DispatchQueue.main.async {
@@ -97,7 +102,6 @@ class ProfileViewController: UIViewController {
             return
         }
         profileView.profilePictureIV.kf.setImage(with: user.photoURL)
-        
         profileView.numberOfPosts.text = "\(userPosts.count)\n#posts"
     }
     
@@ -132,7 +136,7 @@ class ProfileViewController: UIViewController {
     @objc private func editButtonPressed(_ sender: UIBarButtonItem) {
         let storyboard = UIStoryboard(name: "Instagram", bundle: nil)
         let editProfileVC = storyboard.instantiateViewController(identifier: "EditProfileViewController")
-        navigationController?.pushViewController(editProfileVC, animated: true)
+        present(UINavigationController(rootViewController: editProfileVC) , animated: true)
     }
     
     @objc private func editProfilePictureButtonPressed(_ sender: UIButton){

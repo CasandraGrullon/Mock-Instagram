@@ -20,7 +20,7 @@ class DatabaseService {
         guard let email = authDataResult.user.email else {
             return
         }
-        db.collection(DatabaseService.instagramUserCollection).document(authDataResult.user.uid).setData(["userEmail": email]) { error in
+        db.collection(DatabaseService.instagramUserCollection).document(authDataResult.user.uid).setData(["userEmail": email, "userId": authDataResult.user.uid]) { error in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -40,7 +40,7 @@ class DatabaseService {
             }
         }
     }
-    public func updateUserInfo(username: String, userBio: String, fullname: String, completion: @escaping (Result<Bool, Error>) -> ()) {
+    public func updateUserInfo(userId: String, username: String, userBio: String, fullname: String, completion: @escaping (Result<Bool, Error>) -> ()) {
         guard let user = Auth.auth().currentUser else { return }
         
         db.collection(DatabaseService.instagramUserCollection).document(user.uid).updateData(["username": username, "userBio": userBio, "userFullName": fullname], completion: { (error) in

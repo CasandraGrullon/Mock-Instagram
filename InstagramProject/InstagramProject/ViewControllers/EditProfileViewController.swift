@@ -88,7 +88,7 @@ class EditProfileViewController: UIViewController {
             let resizeImage = UIImage.resizeImage(originalImage: profilePicture, rect: profilePictureView.bounds)
             updateProfilePicture(userId: user.uid, selectedImage: resizeImage)
         }
-        updateUserInfo(username: username, userBio: userBio, fullName: fullName)
+        updateUserInfo(userID: user.uid, username: username, userBio: userBio, fullName: fullName)
     }
     private func updateProfilePicture(userId: String, selectedImage: UIImage) {
         storageService.uploadPhoto(userId: userId, image: selectedImage) { [weak self] (result) in
@@ -115,8 +115,8 @@ class EditProfileViewController: UIViewController {
             }
         }
     }
-    private func updateUserInfo(username: String, userBio: String, fullName: String) {
-        db.updateUserInfo(username: username, userBio: userBio, fullname: fullName) { (result) in
+    private func updateUserInfo(userID: String, username: String, userBio: String, fullName: String) {
+        db.updateUserInfo(userId: userID, username: username, userBio: userBio, fullname: fullName) { (result) in
             switch result {
             case .failure(let error):
                 DispatchQueue.main.async {
@@ -126,12 +126,12 @@ class EditProfileViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.showAlert(title: "Profile updated!", message: "")
                 }
-                UIViewController.showViewController(storyboardName: "Instagram", viewcontrollerID: "ProfileViewController")
+                self.dismiss(animated: true)
             }
         }
     }
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
-        UIViewController.showViewController(storyboardName: "Instagram", viewcontrollerID: "ProfileViewController")
+        dismiss(animated: true)
     }
     
 }
