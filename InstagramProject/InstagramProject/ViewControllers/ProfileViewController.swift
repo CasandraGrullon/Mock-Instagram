@@ -94,19 +94,14 @@ class ProfileViewController: UIViewController {
         super.viewDidDisappear(true)
         listener?.remove()
     }
-    
     private func updateUI() {
         guard let user = Auth.auth().currentUser else {
             return
         }
         profileView.profilePictureIV.kf.setImage(with: user.photoURL)
-        guard let iguser = instaUser.first else {
-            return
-        }
         profileView.bioLabel.text = instaUser.first?.userBio
         profileView.fullNameLabel.text = instaUser.first?.userFullName
         profileView.numberOfPosts.text = "\(userPosts.count)\n#posts"
-        
     }
     
     private func configureNavBar() {

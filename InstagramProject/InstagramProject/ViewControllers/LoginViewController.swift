@@ -98,7 +98,6 @@ class LoginViewController: UIViewController {
             signUpHere.setTitle("Login here", for: .normal)
         }
     }
-    
 }
 extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

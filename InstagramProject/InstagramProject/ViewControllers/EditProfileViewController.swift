@@ -79,20 +79,22 @@ class EditProfileViewController: UIViewController {
     
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
         guard let username = usernameTextfield.text, !username.isEmpty,
-            let profilePicture = selectedImage,
             let userBio = bioTextField.text, !userBio.isEmpty,
             let fullName = fullNameTF.text, !fullName.isEmpty else {
                 showAlert(title: "Missing Fields", message: "All fields are required")
                 return
         }
-        let resizeImage = UIImage.resizeImage(originalImage: profilePicture, rect: profilePictureView.bounds)
-        
         guard let user = Auth.auth().currentUser else {
             return
         }
-        //igUser = InstagramUser(username: username, userBio: userBio, userId: user.uid, userFullName: fullName, userEmail: user.email ?? "")
-        
-        storageService.uploadPhoto(userId: user.uid, image: resizeImage) { [weak self] (result) in
+        if let profilePicture = selectedImage {
+            let resizeImage = UIImage.resizeImage(originalImage: profilePicture, rect: profilePictureView.bounds)
+            updateProfilePicture(userId: user.uid, selectedImage: resizeImage)
+        }
+        updateUserInfo(username: username, userBio: userBio, fullName: fullName)
+    }
+    private func updateProfilePicture(userId: String, selectedImage: UIImage) {
+        storageService.uploadPhoto(userId: userId, image: selectedImage) { [weak self] (result) in
             switch result {
             case .failure(let error):
                 DispatchQueue.main.async {
@@ -100,7 +102,6 @@ class EditProfileViewController: UIViewController {
                 }
             case .success(let url):
                 let request = Auth.auth().currentUser?.createProfileChangeRequest()
-                request?.displayName = username
                 request?.photoURL = url
                 
                 request?.commitChanges(completion: { [unowned self] (error) in
@@ -110,14 +111,14 @@ class EditProfileViewController: UIViewController {
                         }
                     } else {
                         DispatchQueue.main.async {
-                            self?.showAlert(title: "Profile Updated", message: "")
+                            self?.showAlert(title: "Profile Picture Updated", message: "")
                         }
-                        let profileVC = ProfileViewController()
-                        self?.navigationController?.pushViewController(profileVC, animated: true)
                     }
                 })
             }
         }
+    }
+    private func updateUserInfo(username: String, userBio: String, fullName: String) {
         db.updateUserInfo(username: username, userBio: userBio, fullname: fullName) { (result) in
             switch result {
             case .failure(let error):
@@ -128,9 +129,9 @@ class EditProfileViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.showAlert(title: "Profile updated!", message: "")
                 }
+                UIViewController.showViewController(storyboardName: "Instagram", viewcontrollerID: "ProfileViewController")
             }
         }
-        
     }
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
         let profileVC = ProfileViewController()
