@@ -13,7 +13,7 @@ class ProfileView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         profilePictureIV.clipsToBounds = true
-        profilePictureIV.layer.cornerRadius = 20
+        profilePictureIV.layer.cornerRadius = 50
         addProfilePictureButton.clipsToBounds = true
         addProfilePictureButton.layer.cornerRadius = 14
     }
@@ -58,21 +58,6 @@ class ProfileView: UIView {
         label.font = UIFont(name: "Euphemia UCAS", size: 17)
         return label
     }()
-//    public lazy var numberOfFollowers: UILabel = {
-//        let label = UILabel()
-//        label.numberOfLines = 0
-//        label.text = "# of \nfollowers"
-//        label.font = UIFont(name: "Euphemia UCAS", size: 17)
-//        return label
-//    }()
-//    public lazy var numberFollowing: UILabel = {
-//        let label = UILabel()
-//        label.numberOfLines = 0
-//        label.text = "# \nfollowing"
-//        label.font = UIFont(name: "Euphemia UCAS", size: 17)
-//        return label
-//    }()
-    
     public lazy var fullNameLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
@@ -102,7 +87,6 @@ class ProfileView: UIView {
     public var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        //layout.estimatedItemSize = .
         let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         cv.backgroundColor = .white
         return cv

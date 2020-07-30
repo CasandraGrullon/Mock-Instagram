@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import FirebaseAuth
 
 enum AccountState {
     case existingUser
@@ -15,7 +15,7 @@ enum AccountState {
 }
 
 class LoginViewController: UIViewController {
-
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
@@ -23,7 +23,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var signUpHere: UIButton!
     
     private var accountState: AccountState = .existingUser
-    
+    private var databaseService = DatabaseService()
     private var authSession = AuthenticationSession()
     
     override func viewDidLoad() {
@@ -31,7 +31,7 @@ class LoginViewController: UIViewController {
         emailTextField.delegate = self
         passwordTextField.delegate = self
     }
-
+    
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         guard let email = emailTextField.text, !email.isEmpty,
             let password = passwordTextField.text, !password.isEmpty else {
@@ -39,14 +39,14 @@ class LoginViewController: UIViewController {
                 return
         }
         continueLoginFlow(email: email, password: password)
-        
     }
+    
     private func continueLoginFlow(email: String, password: String) {
         if accountState == .existingUser {
-            authSession.signInExistingUser(email: email, password: password) { [weak self] (result) in
+            authSession.signExisitingUser(email: email, password: password) { [weak self] (result) in
                 switch result {
                 case .failure(let error):
-                   print(error)
+                    print(error)
                 case .success:
                     DispatchQueue.main.async {
                         self?.navigateToInstagram()
@@ -57,11 +57,25 @@ class LoginViewController: UIViewController {
             authSession.createNewUser(email: email, password: password) { [weak self] (result) in
                 switch result {
                 case .failure(let error):
-                   print(error)
-                case .success:
+                    print(error)
+                case .success(let authDataResult):
                     DispatchQueue.main.async {
-                        self?.navigateToInstagram()
+                        self?.createUser(authDataResult: authDataResult)
                     }
+                }
+            }
+        }
+    }
+    private func createUser(authDataResult: AuthDataResult) {
+        databaseService.createDatabaseUser(authDataResult: authDataResult){ [weak self] (result) in
+            switch result {
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "unable to create a user", message: error.localizedDescription)
+                }
+            case .success:
+                DispatchQueue.main.async {
+                    self?.navigateToInstagram()
                 }
             }
         }
@@ -73,7 +87,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func signUpButtonPressed(_ sender: UIButton) {
         accountState = accountState == .existingUser ? .newUser : .existingUser
-        
+
         if accountState == .existingUser {
             loginButton.setTitle("Login", for: .normal)
             label.text = "Don't have an account?"

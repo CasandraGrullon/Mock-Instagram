@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -34,8 +34,8 @@
                                 <fontDescription key="fontDescription" name="EuphemiaUCAS" family="Euphemia UCAS" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aXx-pv-ROZ" customClass="DesignableButton" customModule="InstagramProject" customModuleProvider="target">
-                                <rect key="frame" x="183.5" y="586" width="47" height="35"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aXx-pv-ROZ">
+                                <rect key="frame" x="20" y="586" width="374" height="35"/>
                                 <color key="backgroundColor" red="0.88636819387868016" green="0.33302431661093562" blue="0.72576950916510463" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" name="EuphemiaUCAS-Bold" family="Euphemia UCAS" pointSize="17"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -81,8 +81,8 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="riw-AE-OKw" secondAttribute="trailing" constant="62" id="2L5-SN-8rG"/>
+                            <constraint firstItem="aXx-pv-ROZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="2Xy-um-9Jk"/>
                             <constraint firstItem="c2D-7X-gq8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="2dd-sf-7PO"/>
-                            <constraint firstItem="aXx-pv-ROZ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6eN-5o-WbM"/>
                             <constraint firstItem="QdJ-p3-gal" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="7Yk-6s-wHx"/>
                             <constraint firstItem="riw-AE-OKw" firstAttribute="centerY" secondItem="ua8-Yd-l12" secondAttribute="centerY" id="7xA-jX-9uI"/>
                             <constraint firstItem="aXx-pv-ROZ" firstAttribute="top" secondItem="xho-Da-DHe" secondAttribute="bottom" constant="50" id="EGA-1W-B4e"/>
@@ -96,6 +96,7 @@
                             <constraint firstItem="aHI-YH-BH8" firstAttribute="top" secondItem="IRo-PY-oYh" secondAttribute="bottom" constant="10" id="V8s-n0-eZa"/>
                             <constraint firstItem="IRo-PY-oYh" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.2" id="VKK-Oj-0nE"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="QdJ-p3-gal" secondAttribute="trailing" constant="20" id="Yw3-Cf-YIn"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="aXx-pv-ROZ" secondAttribute="trailing" constant="20" id="coy-6x-fuH"/>
                             <constraint firstItem="IRo-PY-oYh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="dsq-0c-Y4l"/>
                             <constraint firstItem="xho-Da-DHe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="eoR-uL-P6Y"/>
                             <constraint firstItem="IRo-PY-oYh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="gkT-2w-BGZ"/>

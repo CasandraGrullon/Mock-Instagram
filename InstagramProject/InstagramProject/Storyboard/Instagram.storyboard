@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,6 +17,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" red="0.88636819389999999" green="0.33302431659999998" blue="0.72576950920000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="selectedImageTintColor" red="0.947856009" green="0.28656950590000002" blue="0.71767514939999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBar>
                     <connections>
                         <segue destination="qtL-ab-wPZ" kind="relationship" relationship="viewControllers" id="FjJ-kC-XD9"/>
@@ -107,7 +108,7 @@
             </objects>
             <point key="canvasLocation" x="286.95652173913044" y="-186.16071428571428"/>
         </scene>
-        <!--Instagram Feed View Controller-->
+        <!--Instagram Feed-->
         <scene sceneID="2zP-nh-dHJ">
             <objects>
                 <viewController storyboardIdentifier="InstagramFeedViewController" id="qtL-ab-wPZ" customClass="InstagramFeedViewController" customModule="InstagramProject" customModuleProvider="target" sceneMemberID="viewController">
@@ -220,7 +221,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="M82-7A-pC3"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="house" catalog="system" selectedImage="house.fill" id="yiQ-Ib-hHg"/>
+                    <tabBarItem key="tabBarItem" title="Instagram Feed" image="house" catalog="system" selectedImage="house.fill" id="yiQ-Ib-hHg">
+                        <color key="badgeColor" red="0.947856009" green="0.28656950590000002" blue="0.71767514939999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </tabBarItem>
                     <connections>
                         <outlet property="collectionView" destination="BjD-ui-2el" id="MAe-Bq-odV"/>
                     </connections>
@@ -229,11 +232,13 @@
             </objects>
             <point key="canvasLocation" x="-404.34782608695656" y="-836.38392857142856"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Add New Post-->
         <scene sceneID="xgV-5p-LNK">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HSR-MY-DqB" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="plus.rectangle" catalog="system" selectedImage="plus.rectangle.fill" id="UiK-tf-udY"/>
+                    <tabBarItem key="tabBarItem" title="Add New Post" image="plus.rectangle" catalog="system" selectedImage="plus.rectangle.fill" id="UiK-tf-udY">
+                        <color key="badgeColor" red="0.947856009" green="0.28656950590000002" blue="0.71767514939999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="CHm-b6-x0P">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -272,7 +277,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xkN-zJ-A0B" customClass="DesignableImageView" customModule="InstagramProject" customModuleProvider="target">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xkN-zJ-A0B" customClass="DesignableImageView" customModule="InstagramProject" customModuleProvider="target">
                                 <rect key="frame" x="157" y="98" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="KrF-bS-h5b"/>
@@ -402,30 +407,34 @@
         <!--Navigation Controller-->
         <scene sceneID="PaV-cO-zcE">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Cfq-7N-y8u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3Xa-t2-icM" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dLI-dO-3ui">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.947856009" green="0.28656950590000002" blue="0.71767514939999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
                         <segue destination="QRR-nt-aTI" kind="relationship" relationship="rootViewController" id="Wzs-6H-obe"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cfq-7N-y8u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1237.68115942029" y="520.98214285714289"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Profile-->
         <scene sceneID="udt-kK-LhA">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Gpl-Np-AQs" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="person" catalog="system" selectedImage="person.fill" id="Mbm-4m-Ro3"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="person" catalog="system" selectedImage="person.fill" id="Mbm-4m-Ro3">
+                        <color key="badgeColor" red="0.947856009" green="0.28656950590000002" blue="0.71767514939999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Nho-Mt-4fy">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.947856009" green="0.28656950590000002" blue="0.71767514939999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -438,16 +447,16 @@
         </scene>
     </scenes>
     <resources>
-        <image name="camera" catalog="system" width="64" height="48"/>
-        <image name="checkmark" catalog="system" width="64" height="56"/>
-        <image name="house" catalog="system" width="64" height="54"/>
-        <image name="house.fill" catalog="system" width="64" height="52"/>
-        <image name="person" catalog="system" width="64" height="58"/>
-        <image name="person.fill" catalog="system" width="64" height="60"/>
-        <image name="photo.on.rectangle" catalog="system" width="64" height="48"/>
-        <image name="plus.rectangle" catalog="system" width="64" height="46"/>
-        <image name="plus.rectangle.fill" catalog="system" width="64" height="46"/>
+        <image name="camera" catalog="system" width="128" height="96"/>
+        <image name="checkmark" catalog="system" width="128" height="114"/>
+        <image name="house" catalog="system" width="128" height="110"/>
+        <image name="house.fill" catalog="system" width="128" height="106"/>
+        <image name="person" catalog="system" width="128" height="117"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="photo.on.rectangle" catalog="system" width="128" height="98"/>
+        <image name="plus.rectangle" catalog="system" width="128" height="93"/>
+        <image name="plus.rectangle.fill" catalog="system" width="128" height="93"/>
         <image name="unicode-22EE" width="120" height="120"/>
-        <image name="xmark" catalog="system" width="64" height="56"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
     </resources>
 </document>

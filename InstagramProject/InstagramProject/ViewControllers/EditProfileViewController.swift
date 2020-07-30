@@ -21,8 +21,8 @@ class EditProfileViewController: UIViewController {
     
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
-    public var igUser: InstagramUser?
-    public var fireUser: User!
+    //public var igUser: InstagramUser?
+    //public var fireUser: User!
     private var db = DatabaseService()
     
     private lazy var imagePickerController: UIImagePickerController = {
@@ -90,17 +90,7 @@ class EditProfileViewController: UIViewController {
         guard let user = Auth.auth().currentUser else {
             return
         }
-        igUser = InstagramUser(username: username, userBio: userBio, userId: user.uid, userFullName: fullName, userEmail: user.email ?? "")
-        db.createUser(username: username, userBio: userBio, userId: user.uid, userFullName: fullName, userEmail: user.email ?? "") { (result) in
-            switch result {
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    self.showAlert(title: "Unable to save profile changes", message: "\(error)")
-                }
-            case .success(let docID):
-                Firestore.firestore().collection(DatabaseService.instagramUserCollection).document(docID).updateData(["username": username, "userBio": userBio, "userFullName": fullName])
-            }
-        }
+        //igUser = InstagramUser(username: username, userBio: userBio, userId: user.uid, userFullName: fullName, userEmail: user.email ?? "")
         
         storageService.uploadPhoto(userId: user.uid, image: resizeImage) { [weak self] (result) in
             switch result {
@@ -123,17 +113,25 @@ class EditProfileViewController: UIViewController {
                             self?.showAlert(title: "Profile Updated", message: "")
                         }
                         let profileVC = ProfileViewController()
-                        profileVC.igUser = self?.igUser
                         self?.navigationController?.pushViewController(profileVC, animated: true)
                     }
                 })
             }
         }
+        db.updateUserInfo(username: username, userBio: userBio, fullname: fullName) { (result) in
+            switch result {
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self.showAlert(title: "Failed to update profile", message: "\(error.localizedDescription)")
+                }
+            case .success:
+                DispatchQueue.main.async {
+                    self.showAlert(title: "Profile updated!", message: "")
+                }
+            }
+        }
         
     }
-    
-    
-    
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
         let profileVC = ProfileViewController()
         navigationController?.pushViewController(profileVC, animated: true)
@@ -155,6 +153,5 @@ extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigati
         selectedImage = image
         dismiss(animated: true)
     }
-    
 }
 
