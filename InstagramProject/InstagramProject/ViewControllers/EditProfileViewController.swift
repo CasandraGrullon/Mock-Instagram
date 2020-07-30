@@ -18,11 +18,8 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var emailTextfield: UITextField!
     @IBOutlet weak var fullNameTF: UITextField!
     @IBOutlet weak var bioTextField: UITextField!
-    
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
-    //public var igUser: InstagramUser?
-    //public var fireUser: User!
     private var db = DatabaseService()
     
     private lazy var imagePickerController: UIImagePickerController = {
@@ -134,8 +131,7 @@ class EditProfileViewController: UIViewController {
         }
     }
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
-        let profileVC = ProfileViewController()
-        navigationController?.pushViewController(profileVC, animated: true)
+        UIViewController.showViewController(storyboardName: "Instagram", viewcontrollerID: "ProfileViewController")
     }
     
 }

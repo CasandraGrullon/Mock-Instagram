@@ -18,10 +18,10 @@ enum CollectionState {
 
 class ProfileViewController: UIViewController {
     private let profileView = ProfileView()
-    public var igUser: InstagramUser?
+    private var database = DatabaseService()
     private var listener: ListenerRegistration?
     
-    private var instaUser = [InstagramUser]()
+    private var instaUser: InstagramUser?
     
     public var userPosts = [InstagramPost]() {
         didSet {
@@ -64,6 +64,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         profileView.backgroundColor = .white
         configureNavBar()
+        getUserData()
         updateUI()
         profileView.collectionView.delegate = self
         profileView.collectionView.dataSource = self
@@ -83,9 +84,6 @@ class ProfileViewController: UIViewController {
             } else if let snapshot = snapshot {
                 let posts = snapshot.documents.map { InstagramPost($0.data()) }
                 self?.userPosts = posts
-                let user = snapshot.documents.map {InstagramUser($0.data())}
-                let firstuser = self?.instaUser.first
-                self?.instaUser = user.filter { $0.userId == firstuser?.userId}
                 self?.updateUI()
             }
         })
@@ -99,8 +97,7 @@ class ProfileViewController: UIViewController {
             return
         }
         profileView.profilePictureIV.kf.setImage(with: user.photoURL)
-        profileView.bioLabel.text = instaUser.first?.userBio
-        profileView.fullNameLabel.text = instaUser.first?.userFullName
+        
         profileView.numberOfPosts.text = "\(userPosts.count)\n#posts"
     }
     
@@ -117,11 +114,9 @@ class ProfileViewController: UIViewController {
     @objc private func segmentControllerPressed(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             collectionState = .threeByThree
-            
         } else {
             collectionState = .one
         }
-        
     }
     @objc private func signOutButtonPressed(_ sender: UIBarButtonItem) {
         do {
@@ -159,6 +154,21 @@ class ProfileViewController: UIViewController {
         alertController.addAction(photogallery)
         alertController.addAction(cancel)
         present(alertController, animated: true)
+    }
+    
+    private func getUserData() {
+        database.fetchCurrentUser { [weak self] (result) in
+            switch result {
+            case .failure(let error) :
+                print("could not get user data: \(error)")
+            case .success(let user):
+                DispatchQueue.main.async {
+                    self?.instaUser = user
+                    self?.profileView.bioLabel.text = user.userBio
+                    self?.profileView.fullNameLabel.text = user.userFullName
+                }
+            }
+        }
     }
     
 }
