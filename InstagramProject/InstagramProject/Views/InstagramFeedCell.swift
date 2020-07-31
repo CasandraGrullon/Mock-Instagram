@@ -18,8 +18,6 @@ class InstagramFeedCell: UICollectionViewCell {
     @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var postImage: UIImageView!
     
-    //private var currentIgUser: InstagramUser?
-    
     public func configureCell(post: InstagramPost) {
         if let user = Auth.auth().currentUser {
             profilePic.kf.setImage(with: user.photoURL)
@@ -31,5 +29,4 @@ class InstagramFeedCell: UICollectionViewCell {
         postImage.kf.setImage(with: URL(string:post.photoURL))
         captionLabel.text = post.caption
     }
-    
 }

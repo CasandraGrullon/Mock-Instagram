@@ -21,7 +21,10 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var signUpHere: UIButton!
+    @IBOutlet weak var logoImageTopConstraint: NSLayoutConstraint!
     
+    private var isKeyboardThere = false
+    private var originalState: NSLayoutConstraint!
     private var accountState: AccountState = .existingUser
     private var databaseService = DatabaseService()
     private var authSession = AuthenticationSession()
@@ -31,7 +34,52 @@ class LoginViewController: UIViewController {
         emailTextField.delegate = self
         passwordTextField.delegate = self
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        registerForKeyBoardNotifications()
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+        unregisterForKeyBoardNotifications()
+    }
+    //MARK:- Keyboard Handeling
+    private func registerForKeyBoardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    private func unregisterForKeyBoardNotifications() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    @objc
+    private func keyboardWillShow(notification: NSNotification) {
+        guard let keyboardFrame = notification.userInfo?["UIKeyboardFrameBeginUserInfoKey"] as? CGRect else {
+            return
+        }
+        moveKeyboardUp(height: keyboardFrame.size.height / 2)
+    }
+    @objc
+    private func keyboardWillHide(notification: NSNotification) {
+        resetUI()
+    }
+    private func resetUI() {
+        isKeyboardThere = false
+        logoImageTopConstraint.constant -= originalState.constant
+        UIView.animate(withDuration: 1.0) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    private func moveKeyboardUp(height: CGFloat) {
+        if isKeyboardThere {return}
+        originalState = logoImageTopConstraint
+        isKeyboardThere = true
+        logoImageTopConstraint.constant -= height
+        UIView.animate(withDuration: 1.0) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    //MARK:- Button Outlets
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         guard let email = emailTextField.text, !email.isEmpty,
             let password = passwordTextField.text, !password.isEmpty else {
@@ -80,14 +128,12 @@ class LoginViewController: UIViewController {
             }
         }
     }
-    
     private func navigateToInstagram() {
         UIViewController.showViewController(storyboardName: "Instagram", viewcontrollerID: "Instagram")
     }
     
     @IBAction func signUpButtonPressed(_ sender: UIButton) {
         accountState = accountState == .existingUser ? .newUser : .existingUser
-
         if accountState == .existingUser {
             loginButton.setTitle("Login", for: .normal)
             label.text = "Don't have an account?"

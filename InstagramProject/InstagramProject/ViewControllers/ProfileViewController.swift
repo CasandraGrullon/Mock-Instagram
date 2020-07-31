@@ -59,11 +59,10 @@ class ProfileViewController: UIViewController {
             }
         }
     }
-    
+
     override func loadView() {
         view = profileView
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         profileView.backgroundColor = .white
@@ -75,9 +74,7 @@ class ProfileViewController: UIViewController {
         collectionState = .threeByThree
         profileView.segmentedControl.addTarget(self, action: #selector(segmentControllerPressed(_:)), for: .valueChanged)
         profileView.collectionView.register(PhotoGalleryCell.self, forCellWithReuseIdentifier: "photoGalleryCell")
-        
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         updateUI()
@@ -104,7 +101,6 @@ class ProfileViewController: UIViewController {
         profileView.profilePictureIV.kf.setImage(with: user.photoURL)
         profileView.numberOfPosts.text = "\(userPosts.count)\n#posts"
     }
-    
     private func configureNavBar() {
         guard let user = Auth.auth().currentUser else {
             return
@@ -114,7 +110,6 @@ class ProfileViewController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(signOutButtonPressed))
         profileView.addProfilePictureButton.addTarget(self, action: #selector(editProfilePictureButtonPressed(_:)), for: .touchUpInside)
     }
-    
     @objc private func segmentControllerPressed(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             collectionState = .threeByThree
@@ -132,7 +127,6 @@ class ProfileViewController: UIViewController {
             }
         }
     }
-    
     @objc private func editButtonPressed(_ sender: UIBarButtonItem) {
         let storyboard = UIStoryboard(name: "Instagram", bundle: nil)
         let editProfileVC = storyboard.instantiateViewController(identifier: "EditProfileViewController") { (coder) in
@@ -140,7 +134,6 @@ class ProfileViewController: UIViewController {
         }
         present(UINavigationController(rootViewController: editProfileVC) , animated: true)
     }
-    
     @objc private func editProfilePictureButtonPressed(_ sender: UIButton){
         let alertController = UIAlertController(title: "Update Profile Picture", message: nil, preferredStyle: .actionSheet)
         
@@ -161,7 +154,6 @@ class ProfileViewController: UIViewController {
         alertController.addAction(cancel)
         present(alertController, animated: true)
     }
-    
     private func getUserData() {
         database.fetchCurrentUser { [weak self] (result) in
             switch result {
@@ -176,10 +168,8 @@ class ProfileViewController: UIViewController {
             }
         }
     }
-    
 }
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
@@ -188,7 +178,6 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         selectedImage = image
         dismiss(animated: true)
     }
-    
 }
 extension ProfileViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -208,15 +197,12 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
     }
-    
 }
 extension ProfileViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return userPosts.count
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         guard let cell = profileView.collectionView.dequeueReusableCell(withReuseIdentifier: "photoGalleryCell", for: indexPath) as? PhotoGalleryCell else {
             fatalError("could not cast to photoGallery Cell")
         }
@@ -224,8 +210,5 @@ extension ProfileViewController: UICollectionViewDataSource {
         cell.imageView.clipsToBounds = true
         cell.imageView.kf.setImage(with: URL(string: post.photoURL))
         return cell
-        
     }
-    
-    
 }

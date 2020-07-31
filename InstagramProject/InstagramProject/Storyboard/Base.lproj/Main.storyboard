@@ -15,7 +15,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ff0e20de4718fe14cdd256c81c5db771" translatesAutoresizingMaskIntoConstraints="NO" id="IRo-PY-oYh">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ff0e20de4718fe14cdd256c81c5db771" translatesAutoresizingMaskIntoConstraints="NO" id="IRo-PY-oYh" userLabel="logoImage">
                                 <rect key="frame" x="0.0" y="84" width="414" height="179"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instagram" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHI-YH-BH8">
@@ -114,6 +114,7 @@
                         <outlet property="emailTextField" destination="QdJ-p3-gal" id="RQV-Kd-X8l"/>
                         <outlet property="label" destination="ua8-Yd-l12" id="svx-aA-ebE"/>
                         <outlet property="loginButton" destination="aXx-pv-ROZ" id="lgn-Ia-fkT"/>
+                        <outlet property="logoImageTopConstraint" destination="dsq-0c-Y4l" id="6Hr-Cw-i4e"/>
                         <outlet property="passwordTextField" destination="xho-Da-DHe" id="Fru-bD-lJW"/>
                         <outlet property="signUpHere" destination="riw-AE-OKw" id="8o3-8X-Wmu"/>
                     </connections>
