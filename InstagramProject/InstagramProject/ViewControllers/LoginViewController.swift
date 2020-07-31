@@ -29,10 +29,17 @@ class LoginViewController: UIViewController {
     private var databaseService = DatabaseService()
     private var authSession = AuthenticationSession()
     
+    private lazy var tapGesture: UITapGestureRecognizer = {
+        let gesture = UITapGestureRecognizer()
+        gesture.addTarget(self, action: #selector(didTap(_:)))
+        return gesture
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         emailTextField.delegate = self
         passwordTextField.delegate = self
+        view.addGestureRecognizer(tapGesture)
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
@@ -43,6 +50,10 @@ class LoginViewController: UIViewController {
         unregisterForKeyBoardNotifications()
     }
     //MARK:- Keyboard Handeling
+    @objc private func didTap(_ gesture: UITapGestureRecognizer ) {
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+    }
     private func registerForKeyBoardNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         
