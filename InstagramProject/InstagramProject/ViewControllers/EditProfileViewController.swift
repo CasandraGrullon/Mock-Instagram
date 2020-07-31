@@ -36,6 +36,16 @@ class EditProfileViewController: UIViewController {
         }
     }
     private var storageService = StorageService()
+    private var instaUser: InstagramUser
+    
+    init?(coder: NSCoder, user: InstagramUser) {
+        self.instaUser = user
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,8 +58,10 @@ class EditProfileViewController: UIViewController {
             return
         }
         profilePictureView.kf.setImage(with: user.photoURL)
-        usernameTextfield.text = user.displayName
-        emailTextfield.text = user.email
+        usernameTextfield.text = instaUser.username
+        emailTextfield.text = instaUser.userEmail
+        bioTextField.text = instaUser.userBio
+        fullNameTF.text = instaUser.userFullName
         emailTextfield.isUserInteractionEnabled = false
     }
     

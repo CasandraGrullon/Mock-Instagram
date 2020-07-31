@@ -135,7 +135,9 @@ class ProfileViewController: UIViewController {
     
     @objc private func editButtonPressed(_ sender: UIBarButtonItem) {
         let storyboard = UIStoryboard(name: "Instagram", bundle: nil)
-        let editProfileVC = storyboard.instantiateViewController(identifier: "EditProfileViewController")
+        let editProfileVC = storyboard.instantiateViewController(identifier: "EditProfileViewController") { (coder) in
+            EditProfileViewController(coder: coder, user: self.instaUser!)
+        }
         present(UINavigationController(rootViewController: editProfileVC) , animated: true)
     }
     
@@ -204,7 +206,7 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout {
         }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        return UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
     }
     
 }
