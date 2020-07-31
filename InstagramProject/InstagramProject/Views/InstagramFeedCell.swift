@@ -21,13 +21,13 @@ class InstagramFeedCell: UICollectionViewCell {
     //private var currentIgUser: InstagramUser?
     
     public func configureCell(post: InstagramPost) {
-        if let user = Auth.auth().currentUser, let displayname = user.displayName {
+        if let user = Auth.auth().currentUser {
             profilePic.kf.setImage(with: user.photoURL)
-            userNameLabel.text = displayname
         } else {
             profilePic.backgroundColor = .systemGray
             userNameLabel.text = "username"
         }
+        userNameLabel.text = post.username
         postImage.kf.setImage(with: URL(string:post.photoURL))
         captionLabel.text = post.caption
     }
