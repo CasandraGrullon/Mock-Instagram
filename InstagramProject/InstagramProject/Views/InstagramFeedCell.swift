@@ -19,6 +19,7 @@ class InstagramFeedCell: UICollectionViewCell {
     @IBOutlet weak var postImage: UIImageView!
     
     public func configureCell(post: InstagramPost) {
+        optionsButton.isHidden = true
         if let user = Auth.auth().currentUser {
             profilePic.kf.setImage(with: user.photoURL)
         } else {
