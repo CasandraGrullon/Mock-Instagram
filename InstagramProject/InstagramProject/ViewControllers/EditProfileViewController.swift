@@ -19,15 +19,14 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var fullNameTF: UITextField!
     @IBOutlet weak var bioTextField: UITextField!
     @IBOutlet weak var doneButton: UIBarButtonItem!
+    @IBOutlet weak var profileImageTopConstraint: NSLayoutConstraint!
     
     private var db = DatabaseService()
-    
     private lazy var imagePickerController: UIImagePickerController = {
         let picker = UIImagePickerController()
         picker.delegate = self
         return picker
     }()
-    
     private var selectedImage: UIImage? {
         didSet{
             DispatchQueue.main.async {
@@ -37,6 +36,13 @@ class EditProfileViewController: UIViewController {
     }
     private var storageService = StorageService()
     private var instaUser: InstagramUser
+    private var isKeyboardThere = false
+    private var originalState: NSLayoutConstraint!
+    private lazy var tapGesture: UITapGestureRecognizer = {
+        let gesture = UITapGestureRecognizer()
+        gesture.addTarget(self, action: #selector(didTap(_:)))
+        return gesture
+    }()
     
     init?(coder: NSCoder, user: InstagramUser) {
         self.instaUser = user
@@ -50,9 +56,61 @@ class EditProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         usernameTextfield.delegate = self
+        bioTextField.delegate = self
+        fullNameTF.delegate = self
         updateUI()
+        view.addGestureRecognizer(tapGesture)
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        registerForKeyBoardNotifications()
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+        unregisterForKeyBoardNotifications()
+    }
+    //MARK:- Keyboard Handeling
+    @objc private func didTap(_ gesture: UITapGestureRecognizer ) {
+        usernameTextfield.resignFirstResponder()
+        bioTextField.resignFirstResponder()
+        fullNameTF.resignFirstResponder()
+    }
+    private func registerForKeyBoardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    private func unregisterForKeyBoardNotifications() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    @objc
+    private func keyboardWillShow(notification: NSNotification) {
+        guard let keyboardFrame = notification.userInfo?["UIKeyboardFrameBeginUserInfoKey"] as? CGRect else {
+            return
+        }
+        moveKeyboardUp(height: keyboardFrame.size.height / 2)
+    }
+    @objc
+    private func keyboardWillHide(notification: NSNotification) {
+        resetUI()
+    }
+    private func resetUI() {
+        isKeyboardThere = false
+        profileImageTopConstraint.constant -= originalState.constant
+        UIView.animate(withDuration: 1.0) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    private func moveKeyboardUp(height: CGFloat) {
+        if isKeyboardThere {return}
+        originalState = profileImageTopConstraint
+        isKeyboardThere = true
+        profileImageTopConstraint.constant -= height
+        UIView.animate(withDuration: 1.0) {
+            self.view.layoutIfNeeded()
+        }
+    }
     private func updateUI() {
         guard let user = Auth.auth().currentUser else {
             return

@@ -19,9 +19,7 @@ class AddPhotoViewController: UIViewController {
     
     private let dbService = DatabaseService()
     private let storageService = StorageService()
-    
     private var instaUser: InstagramUser?
-    
     private var selectedImage: UIImage? {
         didSet{
             DispatchQueue.main.async {
@@ -30,11 +28,15 @@ class AddPhotoViewController: UIViewController {
         }
     }
     private var photoLibrary = [UIImage]()
-    
     private lazy var imagePickerController: UIImagePickerController = {
         let picker = UIImagePickerController()
         picker.delegate = self
         return picker
+    }()
+    private lazy var tapGesture: UITapGestureRecognizer = {
+        let gesture = UITapGestureRecognizer()
+        gesture.addTarget(self, action: #selector(didTap(_:)))
+        return gesture
     }()
     
     override func viewDidLoad() {
@@ -43,8 +45,11 @@ class AddPhotoViewController: UIViewController {
         getUserData()
         nextButton.isEnabled = false
         captionTF.delegate = self
+        view.addGestureRecognizer(tapGesture)
     }
-    
+    @objc private func didTap(_ gesture: UITapGestureRecognizer ) {
+        captionTF.resignFirstResponder()
+    }
     private func cameraDisabled() {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             cameraButton.isEnabled = true
@@ -52,7 +57,6 @@ class AddPhotoViewController: UIViewController {
             cameraButton.isEnabled = false
         }
     }
-    
     private func getUserData() {
         dbService.fetchCurrentUser { [weak self] (result) in
             switch result {
@@ -139,7 +143,6 @@ class AddPhotoViewController: UIViewController {
     
     @IBAction func cameraButtonPressed(_ sender: UIBarButtonItem) {
         let alertController = UIAlertController(title: "Choose Photo", message: nil, preferredStyle: .actionSheet)
-        
         let camera = UIAlertAction(title: "Camera", style: .default) { (alertAction) in
             self.imagePickerController.sourceType = .camera
             self.present(self.imagePickerController, animated: true)
@@ -147,7 +150,6 @@ class AddPhotoViewController: UIViewController {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             alertController.addAction(camera)
         }
-        
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         alertController.addAction(cancelAction)
         
@@ -156,7 +158,6 @@ class AddPhotoViewController: UIViewController {
 }
 extension AddPhotoViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        //guarding against optional image user selected
         guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
             return
         }

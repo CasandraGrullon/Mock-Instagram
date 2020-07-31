@@ -38,7 +38,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NGS-WR-Pmj">
-                                <rect key="frame" x="0.0" y="88" width="414" height="493"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="269"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iEC-i7-zd4">
@@ -60,7 +60,7 @@
                                 </items>
                             </toolbar>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="write a caption" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NIL-7k-AWF">
-                                <rect key="frame" x="10" y="591" width="394" height="80"/>
+                                <rect key="frame" x="10" y="367" width="394" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="i0B-Yn-Oct"/>
                                 </constraints>
@@ -74,7 +74,7 @@
                             <constraint firstItem="NGS-WR-Pmj" firstAttribute="top" secondItem="adp-2M-9jh" secondAttribute="top" id="KS3-UY-Okl"/>
                             <constraint firstItem="NIL-7k-AWF" firstAttribute="leading" secondItem="adp-2M-9jh" secondAttribute="leading" constant="10" id="Uvo-pH-SO8"/>
                             <constraint firstItem="iEC-i7-zd4" firstAttribute="bottom" secondItem="adp-2M-9jh" secondAttribute="bottom" id="VKa-Sp-aOS"/>
-                            <constraint firstItem="NGS-WR-Pmj" firstAttribute="height" secondItem="vxg-2A-SRr" secondAttribute="height" multiplier="0.55" id="bqR-Ic-d43"/>
+                            <constraint firstItem="NGS-WR-Pmj" firstAttribute="height" secondItem="vxg-2A-SRr" secondAttribute="height" multiplier="0.3" id="bqR-Ic-d43"/>
                             <constraint firstItem="iEC-i7-zd4" firstAttribute="leading" secondItem="adp-2M-9jh" secondAttribute="leading" id="eae-2z-26A"/>
                             <constraint firstItem="adp-2M-9jh" firstAttribute="trailing" secondItem="NIL-7k-AWF" secondAttribute="trailing" constant="10" id="fDL-P8-84u"/>
                             <constraint firstItem="NIL-7k-AWF" firstAttribute="top" secondItem="NGS-WR-Pmj" secondAttribute="bottom" constant="10" id="o38-We-pez"/>
@@ -396,6 +396,7 @@
                         <outlet property="doneButton" destination="y97-8y-CCP" id="ACL-t2-RL3"/>
                         <outlet property="emailTextfield" destination="XSV-2J-sGN" id="RQa-a7-UWX"/>
                         <outlet property="fullNameTF" destination="5Lz-Wq-LS7" id="zJi-k5-lC3"/>
+                        <outlet property="profileImageTopConstraint" destination="8su-6x-oTa" id="Lds-wQ-5KN"/>
                         <outlet property="profilePictureView" destination="xkN-zJ-A0B" id="JkU-2W-21v"/>
                         <outlet property="usernameTextfield" destination="t6C-uX-i0B" id="Ucv-oo-Rva"/>
                     </connections>
