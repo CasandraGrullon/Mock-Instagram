@@ -20,6 +20,8 @@ class AddPhotoViewController: UIViewController {
     private let dbService = DatabaseService()
     private let storageService = StorageService()
     
+    private var instaUser: InstagramUser?
+    
     private var selectedImage: UIImage? {
         didSet{
             DispatchQueue.main.async {
@@ -38,6 +40,7 @@ class AddPhotoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         cameraDisabled()
+        getUserData()
         nextButton.isEnabled = false
         captionTF.delegate = self
     }
@@ -50,17 +53,30 @@ class AddPhotoViewController: UIViewController {
         }
     }
     
+    private func getUserData() {
+        dbService.fetchCurrentUser { [weak self] (result) in
+            switch result {
+            case .failure(let error) :
+                print("could not get user data: \(error)")
+            case .success(let user):
+                DispatchQueue.main.async {
+                    self?.instaUser = user
+                    
+                }
+            }
+        }
+    }
+    
     @IBAction func nextButtonPressed(_ sender: UIBarButtonItem) {
         guard let photoPicked = selectedImage,
-            let caption = captionTF.text, !caption.isEmpty,
-            let user = Auth.auth().currentUser, let username = user.displayName else {
+            let caption = captionTF.text, !caption.isEmpty else {
                 return
         }
         postImageView.image = photoPicked
         
         let resizeImage = UIImage.resizeImage(originalImage: photoPicked, rect: postImageView.bounds)
         
-        dbService.createPost(username: username, userId: user.uid, caption: caption) { [weak self] (result) in
+        dbService.createPost(username: instaUser?.username ?? "", userId: instaUser?.userId ?? "", caption: caption) { [weak self] (result) in
             switch result {
             case .failure(let error):
                 DispatchQueue.main.async {
@@ -68,9 +84,9 @@ class AddPhotoViewController: UIViewController {
                 }
             case .success(let docID):
                 self?.uploadPhoto(photo: resizeImage, documentId: docID)
+                self?.tabBarController?.selectedIndex = 0
             }
         }
-        tabBarController?.selectedIndex = 0
     }
     private func uploadPhoto(photo: UIImage, documentId: String) {
         storageService.uploadPhoto(postId: documentId, image: photo) { [weak self] (result) in
@@ -137,11 +153,8 @@ class AddPhotoViewController: UIViewController {
         
         present(alertController, animated: true)
     }
-    
-    
 }
 extension AddPhotoViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         //guarding against optional image user selected
         guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
@@ -153,7 +166,6 @@ extension AddPhotoViewController: UIImagePickerControllerDelegate, UINavigationC
         
         dismiss(animated: true)
     }
-    
 }
 extension AddPhotoViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

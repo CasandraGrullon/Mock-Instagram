@@ -50,9 +50,6 @@ class InstagramFeedViewController: UIViewController {
         super.viewWillDisappear(true)
         listener?.remove()
     }
-    
-    
-
 }
 extension InstagramFeedViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
